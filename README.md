@@ -12,7 +12,8 @@ This is a work in progress project, the code and setup is still changing. If you
 
 Several specific libraries have been added to this repository, in de directory <b>lib</b> you can find them.
 
-I am using a non-default programming setup for Teensy, that means that the code might not work in other environments. Thats why pre_compiled_hex files can be found on this repository.
+I am using a non-default programming setup for Teensy. My primary setup is that I am on Linux Mint 19.3 and I use Microsoft VisualCode as my programming editor (IDE) with the PlatformIO plugin. That means some specific parts of the code (especially libraries) might not work directly in for instance the TeensyDuino environment. 
+Thats why pre_compiled_hex files can be found on this repository.
 
 Setup @2020-08-15
 
