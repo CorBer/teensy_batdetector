@@ -6,7 +6,8 @@ https://github.com/DD4WH/Teensy-Bat-Detector )
 Edwin (PE1WF) has developed a great PCB to build these detectors. More details can be found at https://forum.pjrc.com/threads/38988-Bat-detector?p=212852&viewfull=1#post212852 
 
 <b>* v1.0beta 2020815 </b>
-Currently building up the repository with all necessary code. Older versions can still be found at https://github.com/CorBer/teensy_batdetector
+Repository is available with all recent code and libraries. 
+Older versions can still be found at https://github.com/CorBer/teensy_batdetector
 
 This is a work in progress project, the code will keep changing. If you have a specific request or otherwise questions please share them on the forum. 
 
