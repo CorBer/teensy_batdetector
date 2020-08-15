@@ -8,7 +8,7 @@ Edwin (PE1WF) has developed a great PCB to build these detectors. More details c
 <b>* v1.0beta 2020815 </b>
 Repository is available with all recent code and libraries. 
 
-Older versions of this project can be found at https://github.com/CorBer/teensy_batdetector-OLD-
+Older versions of this project can be found at https://github.com/CorBer/OLD-teensy_batdetector
 
 This is a work in progress project, the code will keep changing. If you have a specific request or otherwise questions please share them on the forum. 
 
