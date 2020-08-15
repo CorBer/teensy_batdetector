@@ -12,7 +12,7 @@ This is a work in progress project, the code and setup is still changing. If you
 
 Several specific libraries have been added to this repository, in de directory <b>lib</b> you can find them.
 
-I am using a non-default programming setup for Teensy, that means that the code might not work in other environments.
+I am using a non-default programming setup for Teensy, that means that the code might not work in other environments. Thats why pre_compiled_hex files can be found on this repository.
 
 Setup @2019-06-22
 
