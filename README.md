@@ -8,9 +8,9 @@ Edwin (PE1WF) has developed a great PCB to build these detectors. More details c
 <b>* v1.0beta 2020815 </b>
 Currently building up the repository with all necessary code. Older versions can still be found at https://github.com/CorBer/teensy_batdetector
 
-This is a work in progress project, the code and setup is still changing. If you have a specific request or otherwise questions please share them. 
+This is a work in progress project, the code will keep changing. If you have a specific request or otherwise questions please share them on the forum. 
 
-Several specific libraries have been added to this repository, in de directory <b>lib</b> you can find them.
+The src-directory contains all current sourcecode, several specific libraries have been added to this repository, in de directory <b>lib</b> you can find those.
 
 I am using a non-default programming setup for Teensy. My primary setup is that I am on Linux Mint 19.3 and I use Microsoft VisualCode as my programming editor (IDE) with the PlatformIO plugin. That means some specific parts of the code (especially libraries) might not work directly in for instance the TeensyDuino environment. 
 Thats why pre_compiled_hex files can be found on this repository.
