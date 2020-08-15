@@ -14,12 +14,13 @@ Several specific libraries have been added to this repository, in de directory <
 
 I am using a non-default programming setup for Teensy, that means that the code might not work in other environments. Thats why pre_compiled_hex files can be found on this repository.
 
-Setup @2019-06-22
+Setup @2020-08-15
 
-Operating system Linux Mint 19.1
+Operating system Linux Mint 19.3
 
-<b>Visual Code 1.35.1</b><br>
--PlatformIO Home 2.2.0·Core 3.6.7<br>
+<b>Visual Code 1.48.1</b><br>
+-PlatformIO Core 4.3.4·Home 3.2.3
+
 -platformio.ini<br>
   [env:teensy36]<br>
   platform = teensy<br>
