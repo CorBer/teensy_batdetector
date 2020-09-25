@@ -67,7 +67,7 @@
    VDDA pin 5 3.3V (via ferrite 600)
    VDDI pin 30 3.3V (before ferrite 600) */
 
-#define batversion "DEV 20200828"
+#define batversion "DEV 20200925"
 #define versionno 1001 // used in EEProm storage <1000 is pre-release
 //PIO (platformio) or ARDUINO environment 
 #define COMPILER PIO
