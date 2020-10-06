@@ -180,7 +180,7 @@ void countRAWfiles(void)
           else   {
           String fname=entry.name();
 
-          if ((fname.indexOf(".RAW")>=0))
+          if ((fname.indexOf(".RAW")>=0) or (fname.indexOf(".WAV")>=0) )
             {strcpy(filelist[filecounter],entry.name() );
               //
              //construct filenumber from filename to avoid overwriting
