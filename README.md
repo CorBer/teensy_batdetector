@@ -8,7 +8,10 @@ https://forum.pjrc.com/threads/38988-Bat-detector
 <b>Hardware:</b>
 Edwin (PE1WF) has developed a great PCB to build these detectors. More details can be found at https://forum.pjrc.com/threads/38988-Bat-detector?p=212852&viewfull=1#post212852 
 
-<b> v1.0development version 2020925 </b>
+<b> v1.1development version 202103xx </b>
+Repository is getting built 
+
+<b> v1.0development version 20200925 </b>
 Repository is available with all recent code (subdirectory of src) and pre-compiled hexfiles. 
 
 <b> v1.0beta 2020815 </b>
