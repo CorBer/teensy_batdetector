@@ -13,6 +13,7 @@ Repository is getting built
 
 <b> v1.0development version 20200925 </b>
 Repository is available with all recent code (subdirectory of src) and pre-compiled hexfiles. 
+https://github.com/CorBer/teensy_batdetector/tree/master/src/update20200925
 
 <b> v1.0beta 2020815 </b>
 Repository is available with all recent code and libraries. 
