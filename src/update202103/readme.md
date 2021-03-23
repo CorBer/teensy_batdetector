@@ -1,6 +1,6 @@
 Teensy development version march 2021
 
-/* TEENSY 3.6 PINSETUP (20210309) 
+/* TEENSY 3.6 PINSETUP (20210309) <br>
     pins marked with X are default in use<br>
     pins marked with * are used for optional functions<br>
     pins mared with . are not (yet) in use<br>
