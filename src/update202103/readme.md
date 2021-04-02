@@ -1,4 +1,4 @@
-Teensy development version march 2021
+Teensy development version april 2021
 
 /* TEENSY 3.6 PINSETUP (20210309) <br>
     pins marked with X are default in use<br>
