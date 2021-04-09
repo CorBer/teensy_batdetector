@@ -10,7 +10,7 @@ Edwin (PE1WF) has developed a great PCB to build these detectors. More details c
 
 <b> v1.1development version 20210409 </b>
 Repository will become available in april 2021 <br>
-https://github.com/CorBer/teensy_batdetector/tree/master/src/update20210409
+https://github.com/CorBer/teensy_batdetector/tree/master/src/update20210409_v1.1dev
 
 <b> v1.0development version 20200925 </b>
 Repository is available with all recent code (subdirectory of src) and pre-compiled hexfiles. 
