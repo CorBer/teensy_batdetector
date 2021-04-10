@@ -8,6 +8,11 @@ https://forum.pjrc.com/threads/38988-Bat-detector
 <b>Hardware:</b>
 Edwin (PE1WF) has developed a great PCB to build these detectors. More details can be found at https://forum.pjrc.com/threads/38988-Bat-detector?p=212852&viewfull=1#post212852 
 
+<b>startup picture of a Daubenton's Bat </b>
+kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
+
+<i>This is a work in progress </i>
+
 <b> v1.1development version 20210409 </b>
 Repository will become available in april 2021 <br>
 https://github.com/CorBer/teensy_batdetector/tree/master/src/update20210409_v1.1dev
