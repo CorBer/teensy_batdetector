@@ -11,7 +11,7 @@ Edwin (PE1WF) has developed a great PCB to build these detectors. More details c
 <b>startup picture of a Daubenton's Bat </b>
 kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 
-
+<br><br><br>
 
 
 <b> v1.1development version 20210409 </b>
