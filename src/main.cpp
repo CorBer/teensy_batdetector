@@ -113,7 +113,7 @@
 // -WATERFALL during 1/10 replay
 
 // all defines are in BAT_DEFINES 
-#define batversion "v1.1DEV 20210409" 
+#define batversion "v1.1dev 20210409" 
 #define versionno 1010 // used in EEProm storage <1000 is pre-release 
                       //  1010 is a the 2nd development version update 
 
