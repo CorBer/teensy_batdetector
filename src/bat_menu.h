@@ -1,5 +1,5 @@
-/* BatDetector on Teensy 3.6
- * Copyright (c) 2020, Cor Berrevoets
+/* TEENSYBAT DETECTOR (for TEENSY 3.6) 
+ * Copyright (c) 2018/2019/2020/2021 Cor Berrevoets, registax@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,19 +41,20 @@ const uint8_t  MENU_VOL=   0; //volume
 const uint8_t  MENU_GAIN_MIC=  1; //mic_gain
 const uint8_t  MENU_FRQ=  2; //frequency
 const uint8_t  MENU_SR=    3; //sample rate
+
+
 #ifdef USE_HIPASS_FILTER
-  const uint8_t  MENU_HIP=    4; //sample rate
+  const uint8_t  MENU_HIP=    5; //hipass filter
 #endif
 
 //settings depending on SDcard
 const uint8_t MENU_REC=   100; //record
 const uint8_t MENU_PLAY=  101; //play
-const uint8_t MENU_PLAYD=   102; //play at original rate
 const uint8_t MENU_AUTOREC=  103; //automated recording
 //additional settings
-const uint8_t  MENU_SETTINGS= 201; // SETTINGS menu
+const uint8_t  MENU_SETTINGS= 255; // SETTINGS menu
 
-const uint8_t MENU_MAX= 10; //maximum number of entries
+const uint8_t MENU_MAX= 12; //maximum number of entries
 
 const Menu_Descriptor BaseMenu [MENU_MAX]
 { 
@@ -62,28 +63,27 @@ const Menu_Descriptor BaseMenu [MENU_MAX]
    {MENU_GAIN_MIC, "Gain", true},
    {MENU_FRQ,      "Freq.", true},
    {MENU_SR,       "SRate", true},
+   
  #ifdef USE_HIPASS_FILTER 
    {MENU_HIP,"HIpass",true},
  #endif
+ 
 //only available on left encoder   
    {MENU_PLAY,     "PLAY", true},
    {MENU_REC,      "REC", true},
    {MENU_AUTOREC,  "AutoREC", true},
-#ifdef ADVANCEDMENU   
-   {MENU_PLAYD,    "PLAYD", true},
-#else
-   {MENU_PLAYD,    "PLAYD", false},
-#endif
    {MENU_SETTINGS, "SETTINGS", true},
+
 };
 
 uint8_t LeftMenuOptions=MENU_MAX; //will show all menu options
-uint8_t RightMenuOptions=4; //allow up to SRate
+const uint8_t RIGHT_MAX=4;
+uint8_t RightMenuOptions=RIGHT_MAX; //allow up to SRate
 
 //storage for specific menus 
 Menu_Descriptor LeftBaseMenu [MENU_MAX] 
 {  };
-Menu_Descriptor RightBaseMenu [4] //only top 4 menu options are available on the right-encoder
+Menu_Descriptor RightBaseMenu [RIGHT_MAX] //only top X menu options are available on the right-encoder
 {} ;
 
 /*************************************************************SETTINGS MENU defines *********/
@@ -95,11 +95,12 @@ Menu_Descriptor RightBaseMenu [4] //only top 4 menu options are available on the
 #define SET_MENU_DISPLAY 0
 #define SET_MENU_DETECTOR 1
 #define SET_MENU_SR 2 //Sample Rate at startup
-#define SET_MENU_STARTUPMODE 3 //EEprom or default settings
+//#define SET_MENU_STARTUPMODE 3 //EEprom or default settings
 #define SET_MENU_HIPASS  4 //
 #define SET_MENU_GAIN 5//
 #define SET_MENU_VOL 6//
-
+#define SET_MENU_DETUNE  7 //
+#define SET_MENU_LOWDETECT  7 //
  //sample rates
 //settings during recording/playback
 #define SET_MENU_REC_DETECT 10 //detector mode during recording, HT or A-HT (will use FFT)
@@ -110,8 +111,8 @@ Menu_Descriptor RightBaseMenu [4] //only top 4 menu options are available on the
 #define SET_MENU_TE_LOW   100 //TE_LOW
 #define SET_MENU_TE_SPD   101 //TE_SPD
 #define SET_MENU_TE_GAP   102 //TE_GAP
+#define SET_MENU_TE_DETUNE   103 //FACTOR for HT after TE
 #define SET_MENU_FD_DIV   105 //FD
-
 
 
 //autorecording
@@ -128,95 +129,121 @@ Menu_Descriptor RightBaseMenu [4] //only top 4 menu options are available on the
 #define SET_MENU_COLORS 210 //allow menu-color to be changed
 #define SET_MENU_HICOLORS 211 //allow menu-color to be changed
 #define SET_MENU_BCKCOLORS 212 //allow menu-color to be changed
+#define SET_MENU_BCKLIGHT 213 //backlight level
+#define SET_MENU_TFTSLEEP 214 //sleep in autorecord
+//GPS INFO
+#define SET_MENU_GPS_LAT 230
+#define SET_MENU_GPS_LON 231
+#define SET_MENU_GPS_ALT 232
+#define SET_MENU_GPS_HDOP 233
+#define SET_MENU_GPS_FIXAGE 234
+
+#define SET_MENU_GPS_SENTENCE 235
+#define SET_MENU_GPS_FAILS 236
 
 //advanced menuparts >240
 #define SET_MENU_VAG 241
 #define SET_MENU_INPUT 242
 #define SET_MENU_ADC 243
-#define SET_MENU_FFT_N 244
-#define SET_MENU_LR_DELAY  245 //LR_DELAY
 
-#define SET_MENU_SKIP 254 // skip half a line ?? TODO !!
-
-int8_t settings_page_nr=0; //active settings page
-const uint8_t settings_menu_pages=3;//0,1,2
-//topstructure for settingspages
-const char* settings_page_name[settings_menu_pages]={"DEFAULTS","AUTORECORD","SETUP"};
-uint8_t set_menu_id[settings_menu_pages]={SET_MENU_PAGE,SET_MENU_PAGE,SET_MENU_PAGE}; 
-uint8_t settings_MenuOptions[settings_menu_pages]={0,0,0};
-int8_t set_menu_pos[settings_menu_pages]={0,0,0}; //startup positions of settings_menus
+//#define SET_MENU_SKIP 254 // skip half a line ?? TODO !!
+uint8_t lastsettings_page_nr=0;
+uint8_t settings_page_nr=0; //active settings page
+uint8_t settings_menu_pages=4;//0,1,2,3,4 //default available
+const uint8_t menu_pages_max=5;
+//topstructure for settingspagesy
+const char* settings_page_name[menu_pages_max]={"DEFAULTS","DETECTOR","AUTORECORD","SETUP", "GPS DATA"};
+uint8_t set_menu_id[menu_pages_max]={SET_MENU_PAGE,SET_MENU_PAGE,SET_MENU_PAGE,SET_MENU_PAGE,SET_MENU_PAGE}; 
+uint8_t settings_MenuOptions[menu_pages_max]={0,0,0,0,0};
+int8_t set_menu_pos[menu_pages_max]={0,0,0,0,0}; //startup positions of settings_menus
 
 int8_t timemenu_pos=0; // hours or minutes (0,1)
 //gapindicator = > //menu will jump a few pixels
+
 const Menu_Descriptor Settings0Menu []
-{  {SET_MENU_PAGE,        "SETTINGSpage", true}, //needs to be the 1st option of a settings menu
-   {SET_MENU_DETECTOR,    "Detector", true},
+{  {SET_MENU_PAGE,        "SETTINGSpage", true}, //needs to be the 1st option of any settings menu
+   {SET_MENU_DETECTOR,    "Detectormode", true},
    {SET_MENU_DISPLAY,     "Display", true},
-   {SET_MENU_VOL,         "Volume",true},
+   {SET_MENU_VOL,         ">Volume",true},
    {SET_MENU_GAIN,        "Gain",true},
    
-   {SET_MENU_HIPASS,      "HighPass", true},
-   
-   {SET_MENU_REC_DETECT,  "Record Detect", true},
+   {SET_MENU_HIPASS,      ">>HighPass", true},
 
-   {SET_MENU_SR,          ">SampleRate", true},
+   {SET_MENU_SR,          ">>SampleRate", true},
    {SET_MENU_SR_REC,      "SampleRate Rec", true},
    {SET_MENU_SR_PLY,      "SampleRate Play", true},
 
-   {SET_MENU_TE_SPD,      "TE speed", true},
-   {SET_MENU_TE_GAP,      ">TE gap (ms)", true},
-   {SET_MENU_TE_LOW,      "TE low freq.", true},
-   {SET_MENU_FD_DIV,      "FD divider", true},
-   
-    
-         
+   {SET_MENU_REC_DETECT,  ">>Record Detect", true},
+        
 };
 
 const Menu_Descriptor Settings1Menu []=
+  {{SET_MENU_PAGE,"SETTINGSpage", true},
+   {SET_MENU_TE_SPD,      "TE speed", true},
+   {SET_MENU_TE_GAP,      "TE gap (ms)", true},
+   {SET_MENU_LOWDETECT, "TE low_peak",true},
+   {SET_MENU_TE_LOW,      "TE low freq.", true},
+   #ifdef USE_TEFACTOR
+     {SET_MENU_TE_DETUNE,    "TE detune(%).", true},
+   #endif
+   {SET_MENU_FD_DIV,      ">>FD divider", true},
+   
+  
+  };
+//AREC settings
+const Menu_Descriptor Settings2Menu []=
 {
  {SET_MENU_PAGE,"SETTINGSpage", true},
- {SET_MENU_AREC_SR_REC, "Recorder SampleRate",true},
- {SET_MENU_AREC_DURATION,"max Duration(s)",true},
- {SET_MENU_AREC_BREAK,"max Silence(s)",true},
- {SET_MENU_AREC_PAUSE,"min Pause(s)",true},
- {SET_MENU_AREC_F,"Low Freqency",true},
- {SET_MENU_AREC_S,"Low signal strength",true}
+ {SET_MENU_AREC_SR_REC, "Recording SampleRate",true},
+ {SET_MENU_AREC_F,"Low Frequency",true},
+ {SET_MENU_AREC_S,"Low signal strength",true},
+ {SET_MENU_AREC_DURATION,">>max Duration(s) of rec",true},
+ {SET_MENU_AREC_BREAK,"max Silence(s) in rec",true},
+ {SET_MENU_AREC_PAUSE,"Pause(s) between rec",true},
+ {SET_MENU_TFTSLEEP,">>Display during rec",true}, 
+ 
 };
 
 /****SETTINGS MENU2*********/
-const Menu_Descriptor Settings2Menu []=
+const Menu_Descriptor Settings3Menu []=
   { {SET_MENU_PAGE,"SETTINGSpage", true},
     {SET_MENU_TIME,"TIME HHMM", true},
     {SET_MENU_DATE,"YYYYMMDD", true},
-      
-    {SET_MENU_ENC, "Encoder", true},
-     
-    {SET_MENU_STARTUPMODE, "Use EEprom", true},
-    {SET_MENU_FFORMAT, "Fileformat", true},
-  
-    {SET_MENU_COLORS,">Menu Color", true},
-    {SET_MENU_HICOLORS,"HilightColor", true},
-    {SET_MENU_BCKCOLORS,"Back-Color", true},
-   
-     #ifdef ADVANCEDMENU   
+    {SET_MENU_ENC, ">>Encoder", true},
+    {SET_MENU_FFORMAT, ">>Fileformat", true},
+    {SET_MENU_COLORS,">>menuColor", true},
+    {SET_MENU_HICOLORS,"hilightColor", true},
+    {SET_MENU_BCKCOLORS,"backColor", true},
+    #ifdef USE_PWMTFT
+       {SET_MENU_BCKLIGHT,">>Backlight",true},
+    #endif
+    #ifdef ADVANCEDMENU   
           {SET_MENU_INPUT,       ">INPUT", true},
-          {SET_MENU_FFT_N,       "FFT_N", true},
-          {SET_MENU_LR_DELAY,      "LR delay", true},
-        #ifdef ADAPTED_SGTL_LIB
-          {SET_MENU_VAG,         "VAG", true},
-        #endif 
-        #ifdef USE_ADC_IN  
-            {SET_MENU_ADC,       "use ADC_IN", true},
-        #endif
-          
-     #endif
+    #endif
+     
 
   };
+
+
+#ifdef USE_GPS
+const Menu_Descriptor Settings4Menu []=
+{ {SET_MENU_PAGE,"SETTINGSpage", true},
+    #ifdef USE_GPS
+        {SET_MENU_GPS_LAT,       ">GPS LAT", true},
+        {SET_MENU_GPS_LON,       "GPS LON", true},
+        {SET_MENU_GPS_ALT,       "GPS ALT", true},
+        {SET_MENU_GPS_FIXAGE,     ">GPS fixage", true},
+        {SET_MENU_GPS_HDOP,       "GPS HDOP", true},
+        {SET_MENU_GPS_SENTENCE,   "GPS SENTENCE", true},
+        {SET_MENU_GPS_FAILS,      "GPS FAILS", true},
+     #endif
+  };
+#endif
 
 void build_menu_structures()
 {
 menu_id=BaseMenu[0].menu_id; //always set to default position of
-uint menucount=0;
+uint8_t menucount=0;
 //leftside menu
 for (uint8_t i=0; i<LeftMenuOptions; i++)
 { 
@@ -226,7 +253,7 @@ for (uint8_t i=0; i<LeftMenuOptions; i++)
       menucount++;}
   }
   else
-  {if ((BaseMenu[i].menu_id!=MENU_REC) and (BaseMenu[i].menu_id!=MENU_PLAY) and (BaseMenu[i].menu_id!=MENU_PLAYD) and (BaseMenu[i].menu_id!=MENU_AUTOREC) 
+  {if ((BaseMenu[i].menu_id!=MENU_REC) and (BaseMenu[i].menu_id!=MENU_PLAY) and (BaseMenu[i].menu_id!=MENU_AUTOREC) 
          ) 
        { if (BaseMenu[i].active==true)
          {LeftBaseMenu[menucount]=BaseMenu[i];
@@ -256,10 +283,19 @@ D_PRINT("RIGHTBASEMENU ") D_PRINTLN(menucount)
 settings_MenuOptions[0]=sizeof (Settings0Menu) / sizeof (Settings0Menu[0]);
 settings_MenuOptions[1]=sizeof (Settings1Menu) / sizeof (Settings1Menu[0]);
 settings_MenuOptions[2]=sizeof (Settings2Menu) / sizeof (Settings2Menu[0]);
+settings_MenuOptions[3]=sizeof (Settings3Menu) / sizeof (Settings3Menu[0]);
 
 D_PRINTXY("SETMENU0 ",settings_MenuOptions[0]);
 D_PRINTXY("SETMENU1 ",settings_MenuOptions[1]);
 D_PRINTXY("SETMENU2 ",settings_MenuOptions[2]);
+D_PRINTXY("SETMENU3 ",settings_MenuOptions[3]);
+
+#ifdef USE_GPS
+  settings_MenuOptions[4]=sizeof (Settings4Menu) / sizeof (Settings4Menu[0]);
+  D_PRINTXY("SETMENU4 ",settings_MenuOptions[4]);
+  settings_menu_pages=5; //increase number of pages
+
+#endif
 
 //run over all settings_pages
 for (uint8_t j=0; j<settings_menu_pages; j++)
@@ -274,6 +310,12 @@ for (uint8_t i=0; i<settings_MenuOptions[j]; i++)
      { menucount++;}   
   if ((j==2) and (Settings2Menu[i].active==true))
      { menucount++;}
+  if ((j==3) and (Settings3Menu[i].active==true))
+     { menucount++;}   
+  #ifdef USE_GPS   
+  if ((j==4) and (Settings4Menu[i].active==true))
+     { menucount++;} 
+  #endif     
  }  
  settings_MenuOptions[j]=menucount;
 }
@@ -299,15 +341,40 @@ char * getMenuTxtVal(uint8_t menu_id, uint8_t update_page)
       case SET_MENU_FD_DIV:
         snprintf(tstr,tlen, "1/%02d", FD_divider);
       break;
+      case SET_MENU_LOWDETECT:
+        snprintf(tstr,tlen, "%03d", FFT_peak);
+      break;
+      
+      #ifdef USE_TEFACTOR
+      case SET_MENU_TE_DETUNE:
+        if (detune_factor!=100)
+            {snprintf(tstr,tlen, "%03d", detune_factor);
+            }
+            else
+            { snprintf(tstr,tlen, "OFF");
+
+            }
+      break;
+      #endif
+      
       case SET_MENU_SR:
         snprintf(tstr,tlen,"%s",SR[oper_SR].txt);
       break;
+
       case SET_MENU_SR_REC:
         snprintf(tstr,tlen,"%s",SR[rec_SR].txt);
         break;
 
       case SET_MENU_SR_PLY:
-        snprintf(tstr,tlen,"%s",SR[play_SR].txt);
+        if (play_SR<MAX_play_SR)
+           {snprintf(tstr,tlen,"%s",SR[play_SR].txt);
+           }
+        else
+        {
+          {snprintf(tstr,tlen,"%s","DIRECT"); 
+           }
+        }
+           
         break;
       case SET_MENU_FFORMAT:
         if (FFORMAT==FFORMAT_RAW)
@@ -353,14 +420,6 @@ char * getMenuTxtVal(uint8_t menu_id, uint8_t update_page)
             }
         break;
 
-      case SET_MENU_STARTUPMODE:
-      if (use_presets==0)
-          {snprintf(tstr,tlen, "OFF");
-            }
-          else
-          {snprintf(tstr,tlen, "ON");
-              };
-      break;
 
       case SET_MENU_GAIN:
          snprintf(tstr,tlen, "%03d", def_gain);
@@ -371,18 +430,18 @@ char * getMenuTxtVal(uint8_t menu_id, uint8_t update_page)
       break;
 
       #ifdef USE_HIPASS_FILTER
-      case SET_MENU_HIPASS:
-       if (HI_pass>HI_PASS_OFF)
-        {snprintf(tstr,tlen, "%02d kHz", HI_pass);
-        }
-        else
-        {
-          snprintf(tstr,tlen, "OFF");
-        }
-        
-      break;
+        case SET_MENU_HIPASS:
+        if (HI_pass>HI_PASS_OFF)
+          {snprintf(tstr,tlen, "%02d kHz", HI_pass);
+          }
+          else
+          {
+            snprintf(tstr,tlen, "OFF");
+          }
+          
+        break;
       #endif
-      
+
       case SET_MENU_AREC_DURATION:
         snprintf(tstr,tlen, "%03d", AREC_D*5);
       break;
@@ -396,7 +455,7 @@ char * getMenuTxtVal(uint8_t menu_id, uint8_t update_page)
         snprintf(tstr,tlen, "%02d", AREC_S);
       break;
       case SET_MENU_AREC_BREAK:
-        snprintf(tstr,tlen, "%03d", AREC_B*5);
+        snprintf(tstr,tlen, "%03d", AREC_B);
       break;
       
       case SET_MENU_AREC_SR_REC:
@@ -411,8 +470,23 @@ char * getMenuTxtVal(uint8_t menu_id, uint8_t update_page)
       break;
       case SET_MENU_BCKCOLORS:        
         snprintf(tstr,tlen, "%03d",  cwheelpos[2]);
-      break;      
+      break; 
+      #ifdef USE_PWMTFT     
+        case SET_MENU_BCKLIGHT:        
+          snprintf(tstr,tlen, "%03d",  tft_backlight);
+        break;   
+      #endif 
+       case SET_MENU_TFTSLEEP:        
+          if (tft_sleep) //setting is DISPLAY, so if sleep is true, display is OFF
+              { snprintf(tstr,tlen, "OFF");
+              }
+          else
+              {
+                snprintf(tstr,tlen, "ON");
+              }
+        break;   
 
+      
       case SET_MENU_ENC:
       if (ENCODER_TURN==1)
             { snprintf(tstr,tlen, "Clockw");
@@ -421,39 +495,49 @@ char * getMenuTxtVal(uint8_t menu_id, uint8_t update_page)
             {snprintf(tstr,tlen, "C-Clockw");
             }
       break;
-  
-      #ifdef USE_ADC_IN 
-      case SET_MENU_ADC:
-           if (ADC_ON)
-                {  snprintf(tstr,tlen,"On ");
-                }
-            else   
-             {  snprintf(tstr,tlen,"Off ");
-                }
-          break;    
-      #endif
-
-      #ifdef ADVANCEDMENU            
-          case SET_MENU_LR_DELAY:
-          snprintf(tstr,tlen, "%03d", LR_DELAY);
+      
+      #ifdef USE_GPS
+        case SET_MENU_GPS_LAT: //degrees
+              snprintf(tstr,tlen, "%.6f", float(gps_latitude)/1000000 );
+          break;
+        case SET_MENU_GPS_LON: //degrees
+              snprintf(tstr,tlen, "%.6f", float(gps_longitude)/1000000 );
+          break;
+        case SET_MENU_GPS_ALT: //meters
+              snprintf(tstr,tlen, "%.2f", float(gps_altitude)/100 );
+          break;
+        case SET_MENU_GPS_HDOP: //meters
+              snprintf(tstr,tlen, "%.2f", float(gps_HDOP)/100 );
+          break;
+        case SET_MENU_GPS_FIXAGE://ms
+              snprintf(tstr,tlen, "%.3f", float(gps_fixage)/1000 );
+          break;
+        
+        case SET_MENU_GPS_FAILS:
+              snprintf(tstr,tlen, "%d", gps_failed_cs);
+          break;
+        case SET_MENU_GPS_SENTENCE:
+              snprintf(tstr,tlen, "%d", gps_sentences);
           break;
 
+      #endif
+           
+      
+      #ifdef ADVANCEDMENU            
+          
           case SET_MENU_INPUT: 
           if (myInput==AUDIO_INPUT_LINEIN)
               {snprintf(tstr,tlen, "LINE_IN");
                 }
-              else
+           if (myInput==AUDIO_INPUT_MIC)
               {snprintf(tstr,tlen, "MIC_IN");
                   };
+           if (myInput==AUDIO_INPUT_ADC)
+              {snprintf(tstr,tlen, "ADC_IN");
+                  };
+                  
           break;
-          #ifdef ADAPTED_SGTL_LIB
-          case SET_MENU_VAG:
-              snprintf(tstr,tlen, "%04X", VAG);
-          break;
-          #endif
-          case SET_MENU_FFT_N:
-              snprintf(tstr,tlen, "%01d", FFT_N);
-          break;    
+          
                     
       #endif 
 
@@ -466,7 +550,261 @@ char * getMenuTxtVal(uint8_t menu_id, uint8_t update_page)
  return tstr;
 }
 
+void menuAction(uint8_t menu_id, int8_t change )
+//act on changes for a menu_setting
+{
+  D_PRINT(" MENU ACTION ")
+  D_PRINTLN(menu_id)
+  /******************************VOLUME  ***************/
+      if (menu_id==MENU_VOL)
+        { volume+=change;
+          volume=constrain(volume,0,90); //not cyclic
+          set_vol(volume);
+        }
+   /******************************MAIN SR   ***************/
+      if ((menu_id==MENU_SR) and (LeftButton_Mode!=MODE_PLAY))  //selects a possible SR but only if we are not in the playing mode
+        { oper_SR+=change;
+          oper_SR=constrain(oper_SR,SR_MIN,SR_MAX); //not cyclic
+          set_SR(oper_SR);
+        }
+     /******************************MIC_GAIN  ***************/
+      if (menu_id==MENU_GAIN_MIC)
+        {
+         mic_gain+=change;
+         mic_gain=constrain(mic_gain,0,63);
+         set_mic(mic_gain);
+     
+        }     
+  /******************************FREQUENCY  ***************/
+      if (menu_id==MENU_FRQ)
+         { int delta=500;
+          if (detector_mode==detector_heterodyne) //only allow manual change in heterodyne mode
+           {uint32_t currentmillis=millis();
+              //when turning the encoder faster make the changes larger
+              if ((currentmillis-lastmillis)<500)
+                  { delta=1000;}
+              if ((currentmillis-lastmillis)<250)
+                  { delta=2000;}
+              if ((currentmillis-lastmillis)<100)
+                  { delta=5000;}
+
+              osc_frequency=osc_frequency+delta*change;
+              // limit the frequency to 500hz steps
+              osc_frequency=constrain(osc_frequency,7000,int(SR_real/2000)*1000-1000);
+              last_osc_frequency=osc_frequency; //always backup the F setting
+              set_freq_Oscillator (osc_frequency);
+              lastmillis=millis();
+           }
+         }
+     #ifdef USE_HIPASS_FILTER
+          if (menu_id==MENU_HIP)
+          {
+                HI_pass+=change*2;
+                HI_pass=constrain(HI_pass,HI_PASS_OFF,50); 
+                //set_SR(oper_SR);
+                setHiPass();
+          
+          }
+      #endif  
+    
+    //  #ifdef USE_TEFACTOR
+    //   if (menu_id==MENU_TEFACTOR)
+    //     { 
+    //       detune_factor=cyclic_constrain(detune_factor,change,50,100);
+    //       if (detune_factor==100)
+    //          set_OutputMixer(granularmixer);
+    //       else
+    //          set_OutputMixer(granularHTmixer);
+                   
+    //     }
+    //  #endif          
+}
+
+void settingsMenuAction(uint8_t set_menu_id, int8_t change)
+{ 
+           D_PRINT(" SETMENU ACTION ")
+           D_PRINTLN(set_menu_id) 
+          if (set_menu_id==SET_MENU_FD_DIV)
+            { //TE_low+=change;
+              FD_divider=cyclic_constrain(FD_divider,change,4,16); //4,8,16,32,64
+              granular1.setdivider(FD_divider);
+             }
+
+            if (set_menu_id==SET_MENU_LOWDETECT)
+            {   
+                uint8_t peak=FFT_peak/25;
+                peak=cyclic_constrain(peak,change,0,200);
+                FFT_peak=uint16_t(peak*25);
+                
+             }
+   
+           #ifdef USE_TEFACTOR
+           if (set_menu_id==SET_MENU_TE_DETUNE)
+            { //TE_low+=change;
+              detune_factor=cyclic_constrain(detune_factor,change,50,100); 
+              D_PRINTXY("TE FACTOR", detune_factor)
+              if (detune_factor==100)
+                set_OutputMixer(granularmixer);
+              else
+                set_OutputMixer(granularHTmixer);
+             }
+               
+           #endif   
+          //time expansion lowest frequency
+          if (set_menu_id==SET_MENU_TE_GAP)
+            { //TE_low+=change;
+              TE_GAP=cyclic_constrain(TE_GAP,change*5,15,200);
+             }
+              
+          //time expansion lowest frequency
+          if (set_menu_id==SET_MENU_TE_LOW)
+            { //TE_low+=change;
+              TE_low=cyclic_constrain(TE_low,change,15,35);
+              signal_LoF_bin= int((TE_low*1000.0)/(SR_FFTratio));
+              }
+          //time expansion replay speed   
+          if (set_menu_id==SET_MENU_TE_SPD)
+            {  //TE_speed+=change;
+               TE_speed=cyclic_constrain(TE_speed,change, 5,30);
+             }
+          //operational sample rate   
+          if (set_menu_id==SET_MENU_SR)
+            { oper_SR+=change;
+              oper_SR=constrain(oper_SR,SR_MIN,SR_MAX);
+              set_SR(oper_SR);
+             }   
+           if (set_menu_id==SET_MENU_GAIN)
+          {     def_gain+=change;
+                def_gain=constrain(def_gain,0,63); 
+                //set_SR(oper_SR);
+                mic_gain=def_gain;
+                set_mic(mic_gain);
+            }   
+            if (set_menu_id==SET_MENU_VOL)
+          {     def_vol+=change;
+                def_vol=constrain(def_vol,0,90); 
+                //set_SR(oper_SR);
+                volume=def_vol;
+                set_vol(volume);
+            }    
+        #ifdef USE_HIPASS_FILTER
+          if (set_menu_id==SET_MENU_HIPASS)
+          {     HI_pass+=change*2;
+                HI_pass=constrain(HI_pass,HI_PASS_OFF,50); 
+                //set_SR(oper_SR);
+                setHiPass();
+            }
+       #endif
+                      //default display mode   
+          if (set_menu_id==SET_MENU_DISPLAY)
+            { //startup_display+=change;
+              startup_display=cyclic_constrain(startup_display,change, 0,2); //allowed settings
+             }   
+          //default detector mode
+          if (set_menu_id==SET_MENU_DETECTOR)
+            { //startup_detector+=change;
+              startup_detector=cyclic_constrain(startup_detector,change,0,4); //allowed settings
+             }      
+          if (set_menu_id==SET_MENU_REC_DETECT)
+            { //startup_detector+=change;
+              record_detector=cyclic_constrain(record_detector,change,0,detector_Auto_heterodyne); //allowed settings
+             }    
+              
+          //default sampleRate for replay
+          if (set_menu_id==SET_MENU_SR_PLY)
+            { 
+              if (play_SR==SR_192K)
+                {play_SR=MAX_play_SR;}
+                
+              play_SR+=change;   
+              play_SR=constrain(play_SR,SR_8K,MAX_play_SR);
+              if (play_SR>=MAX_play_SR)
+                 {play_SR=SR_192K;} //switch to DIRECTPLAY
+
+            }
+          //default sampleRate for recording  
+          if (set_menu_id==SET_MENU_SR_REC)
+            { //rec_SR+=change;
+              rec_SR=cyclic_constrain(rec_SR,change, SR_44K,SR_MAX);
+            }
+
+          //default FORMAT for recording  
+          if (set_menu_id==SET_MENU_FFORMAT)
+            { //rec_SR+=change;
+              FFORMAT=cyclic_constrain(FFORMAT,change, FFORMAT_RAW,FFORMAT_WAV);
+            }
+              if (set_menu_id==SET_MENU_AREC_DURATION)
+              {  
+                 AREC_D=cyclic_constrain(AREC_D,change,1,60); //5-300sec
+              }
+
+            if (set_menu_id==SET_MENU_AREC_PAUSE)
+              {  
+                AREC_P=cyclic_constrain(AREC_P,change,0,60); //0-300sec
+              }
+            if (set_menu_id==SET_MENU_AREC_BREAK)
+              {  
+                AREC_B=cyclic_constrain(AREC_B,change,1,30); //1-30sec
+              }
+              
+            //default sampleRate for recording  
+            if (set_menu_id==SET_MENU_AREC_SR_REC)
+            {
+              rec_SR=cyclic_constrain(rec_SR,change,SR_44K,SR_MAX);
+            }
+            if (set_menu_id==SET_MENU_AREC_S)
+              {  
+                 AREC_S=cyclic_constrain(AREC_S,change, 1,20);
+              }
+            if (set_menu_id==SET_MENU_AREC_F)
+              {  
+                 AREC_F=cyclic_constrain(AREC_F,change*5,10,80);
+              } 
+            #ifdef USE_PWMTFT
+             if (set_menu_id==SET_MENU_BCKLIGHT)
+              {  tft_backlight=tft_backlight/5*5;
+                 tft_backlight=cyclic_constrain(tft_backlight,change*5,0,255);
+                 set_backlight(tft_backlight);
+              } 
+            #endif  
+            if (set_menu_id==SET_MENU_TFTSLEEP)
+               {
+                 tft_sleep=!(tft_sleep);
+               }
+              
+            
+ //encoder direction
+          if (set_menu_id==SET_MENU_ENC)
+            { ENCODER_TURN=ENCODER_TURN*-1; //reverse
+              enc_dn=ENCODER_TURN*-1;
+              enc_up=ENCODER_TURN;
+             } 
+
+#ifdef ADVANCEDMENU
+            if (set_menu_id==SET_MENU_INPUT)
+              { 
+                #ifdef USE_ADC_IN
+                   myInput=cyclic_constrain(myInput,change,0,2);   
+                #else
+                   myInput=cyclic_constrain(myInput,change,0,1);   
+                #endif  
+                if ((myInput==AUDIO_INPUT_LINEIN) | (myInput==AUDIO_INPUT_MIC))
+                     { set_InputMixer(in_mic);
+                       AudioNoInterrupts();
+                       sgtl5000.inputSelect(myInput);
+                       set_mic(mic_gain);
+                       AudioInterrupts();
+                       
+                       }
+                if (myInput==AUDIO_INPUT_ADC)
+                    { set_InputMixer(in_adc);
+                      set_mic(mic_gain);
+                    }
 
 
+              }
+#endif      
+
+}
 
 #endif
