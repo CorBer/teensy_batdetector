@@ -15,7 +15,7 @@ kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 
 
 <b> v1.1development version 20210409 </b>
-Repository will become available in april 2021 <br>
+Repository available since 9 april 2021 <br>
 https://github.com/CorBer/teensy_batdetector/tree/master/src/update20210409_v1.1dev
 
 <b> v1.0development version 20200925 </b>
