@@ -713,7 +713,7 @@ void settingsMenuAction(uint8_t set_menu_id, int8_t change)
           //default sampleRate for replay
           if (set_menu_id==SET_MENU_SR_PLY)
             { 
-              if (play_SR==SR_192K)
+              if (play_SR>=MAX_play_SR)
                 {play_SR=MAX_play_SR;}
                 
               play_SR+=change;   
