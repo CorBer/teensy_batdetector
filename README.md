@@ -5,9 +5,9 @@ https://forum.pjrc.com/threads/38988-Bat-detector
 
 
 <b>Hardware:</b>
-Edwin (PE1WF) has developed a great PCB to build these detectors. <br>More details can be found at https://forum.pjrc.com/threads/38988-Bat-detector?p=212852&viewfull=1#post212852 or
+Edwin (PE1WF) has developed a great PCB to build these detectors. <br>More details can be found at https://forum.pjrc.com/threads/38988-Bat-detector?p=212852&viewfull=1#post212852 or <br>
 at Edwins GDrive https://drive.google.com/drive/folders/1NRtWXN9gGVnbPbqapPHgUCFOQDGjEV1q
-or at https://www.teensybat.com
+or<br> at https://www.teensybat.com
 
 <b>Startup picture of a Daubenton's Bat </b>
 kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
