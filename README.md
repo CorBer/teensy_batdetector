@@ -3,8 +3,6 @@
 <b>Teensy Batdetector forum</b>
 https://forum.pjrc.com/threads/38988-Bat-detector
 
-<b>Batdetector on Teensy3.6 (Based on original-code from Frank (DD4WH)</b>
-https://github.com/DD4WH/Teensy-Bat-Detector )
 
 <b>Hardware:</b>
 Edwin (PE1WF) has developed a great PCB to build these detectors. More details can be found at https://forum.pjrc.com/threads/38988-Bat-detector?p=212852&viewfull=1#post212852 or
@@ -12,6 +10,10 @@ at Edwins GDrive https://drive.google.com/drive/folders/1NRtWXN9gGVnbPbqapPHgUCF
 
 <b>Startup picture of a Daubenton's Bat </b>
 kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
+
+<b>Based on original-code from Frank (DD4WH)</b>
+https://github.com/DD4WH/Teensy-Bat-Detector 
+
 
 <br>
 
