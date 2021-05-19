@@ -13,7 +13,7 @@ at Edwins GDrive https://drive.google.com/drive/folders/1NRtWXN9gGVnbPbqapPHgUCF
 <b>Startup picture of a Daubenton's Bat </b>
 kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 
-<br><br><br>
+<br>
 
 # UPCOMING
 <b> v1.2 release 202104xx </b>
