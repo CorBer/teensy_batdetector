@@ -35,7 +35,7 @@ Older versions of this project can be found at https://github.com/CorBer/OLD-tee
 
 <i>This is a work in progress project, the code will keep changing. If you have a specific request or otherwise questions please share them on the forum. 
 
-The src-directory contains all current sourcecode, several specific libraries have been added to this repository, in de directory <b>lib</b> you can find those.
+For each version you will find a src-directory containing all current sourcecode, several specific libraries have been added to lib-directory for each version. Specific HEX (pre-compiled version) can be found for each version or in the overall collection at https://github.com/CorBer/teensy_batdetector/tree/master/pre_compiled_hex
 
 I am using a non-default programming setup for Teensy. My primary setup is that I am on Linux Mint 19.3 and I use Microsoft VisualCode as my programming editor (IDE) with the PlatformIO plugin. Pre_compiled_hex files made on my machine can be found on the various versions.</i>
 
