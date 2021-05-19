@@ -15,8 +15,10 @@ kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 
 <br>
 
-# UPCOMING
+# UPCOMING (CURRENTLY NOT ACTIVE)
 <b> v1.2 release 202105xx </b>
+Repository available since xx may 2021 <br>
+https://github.com/CorBer/teensy_batdetector/tree/master/version1_2
 <br>
 <br>
 # AVAILABLE SOURCECODE / HEXFILES
