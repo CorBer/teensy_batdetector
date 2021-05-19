@@ -16,7 +16,7 @@ kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 <br>
 
 # UPCOMING
-<b> v1.2 release 202104xx </b>
+<b> v1.2 release 202105xx </b>
 <br>
 <br>
 # AVAILABLE SOURCECODE / HEXFILES
