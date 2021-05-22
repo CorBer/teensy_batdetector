@@ -6,11 +6,11 @@ The sourcecode/libraries and HEX files have large changes compared to previous v
 All code is based on <b>TeensyDuino 1.154.0-beta7</b> default cores and libraries (https://forum.pjrc.com/threads/66357-Teensyduino-1-54-Beta-7)
 
 Installers<br>
-Windows<br>
+**Windows**<br>
 https://www.pjrc.com/teensy/td_154-beta7/TeensyduinoInstall.exe<br>
-Linux 64<br>
+**Linux 64**<br>
 https://www.pjrc.com/teensy/td_154-beta7/TeensyduinoInstall.linux64<br>
-Linux32<br>
+**Linux32**<br>
 https://www.pjrc.com/teensy/td_154-beta7/TeensyduinoInstall.linux32<br>
 
 
