@@ -12,9 +12,10 @@ https://www.pjrc.com/teensy/td_154-beta7/TeensyduinoInstall.exe<br>
 https://www.pjrc.com/teensy/td_154-beta7/TeensyduinoInstall.linux64<br>
 **Linux32**<br>
 https://www.pjrc.com/teensy/td_154-beta7/TeensyduinoInstall.linux32<br>
+<br><br><br>
 
 
-HEX FILES are provided to allow easy installing (see https://github.com/CorBer/teensy_batdetector/tree/master/version1_2/HEX)
+**HEX FILES** are provided to allow easy installing (see https://github.com/CorBer/teensy_batdetector/tree/master/version1_2/HEX)
 
 Sourcecode and libraries can be found in the src and lib directory.
 
