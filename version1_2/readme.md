@@ -14,8 +14,7 @@ https://www.pjrc.com/teensy/td_154-beta7/TeensyduinoInstall.exe<br>
 https://www.pjrc.com/teensy/td_154-beta7/TeensyduinoInstall.linux64<br>
 **Linux32**<br>
 https://www.pjrc.com/teensy/td_154-beta7/TeensyduinoInstall.linux32<br>
-<br><br><br>
-
+<br><br>
 Sourcecode and libraries can be found in the src and lib directory.
 
 This version only uses a very small group of local (non-default) libraries
