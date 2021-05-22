@@ -743,13 +743,18 @@ void StartupScreen()
   delay(500);
   char tstr[9];
   //tft.print(tstr);
+  
   tft.setCursor(0,150);
   tft.setTextColor(COLOR_YELLOW);
   tft.println("Teensy Batdetector");
   tft.setTextColor(COLOR_WHITE); 
   tft.setFont(Arial_14);
   tft.setCursor(0,175);
-  tft.println(versionStr);
+  tft.print(versionStr);
+  #ifdef DEBUG
+  tft.print(" D ");
+  #endif
+  tft.println();
   tft.print("  ");
   tft.print(String(__DATE__ )); //show compiled date/time
   tft.print(" ");

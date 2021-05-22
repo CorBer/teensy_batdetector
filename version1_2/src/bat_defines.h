@@ -33,11 +33,13 @@
 //HARDWARE SPECIFIC 
 
 #define PWM //use PWM to control the backlight intensity of the TFT
+
 #ifdef PWM
  #if defined(__MK66FX1M0__) //teensy 3.6
   #define USE_PWMTFT 17 //use PWM controlled backlight (pin 17) (8bytes RAM 1kb Flash)
   //#define USE_ADC_IN // use A2 (pin16) for direct microphone input //default OFF
  #endif
+
  #if defined(__IMXRT1062__) //teensy 4.1
   #define USE_PWMTFT 14
  #endif
