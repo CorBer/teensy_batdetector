@@ -2,7 +2,7 @@ The files in this directory are libraries needed by TeensyBat V1_2 (20210522)
 
 To use this unzip both usdfs.zip and timealtlib.zip in seperate directories. 
 You can place all the other *.cpp and *.h files together(eg bat_libs)
-
+<p style="font-family:'Lucida Console', monospace">
 ── bat_libs<br>
 │   ├── bateffect_granular.cpp<br>
 │   ├── bateffect_granular.h<br>
@@ -35,6 +35,7 @@ You can place all the other *.cpp and *.h files together(eg bat_libs)
 │        ├── ffsystem.c<br>
 │        ├── ffunicode.c<br>
 │        ├── uSDFS.h<br>
+│        
 │        └── utility<br>
 │            ├── ff_utils.c<br>
 │            ├── sd_config.h<br>
