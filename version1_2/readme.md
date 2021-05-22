@@ -5,6 +5,10 @@ This is the 2nd release of TeensyBat.
 The sourcecode/libraries and HEX files have large changes compared to previous versions. 
 All code is based on <b>TeensyDuino 1.154.0-beta7</b> default cores and libraries (https://forum.pjrc.com/threads/66357-Teensyduino-1-54-Beta-7)
 
+HEX FILES are provided to allow easy installing (see https://github.com/CorBer/teensy_batdetector/tree/master/version1_2/HEX)
+
+Sourcecode and libraries can be found in the src and lib directory.
+
 This version only uses a very small group of local (non-default) libraries
 - USDFS.zip from WMXZ original source at https://github.com/WMXZ-EU/uSDFS
 - TimeAltLib.zip (ONLY for windows users !)
