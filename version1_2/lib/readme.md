@@ -1,8 +1,8 @@
-The files in this directory are libraries needed by TeensyBat V1_2
+The files in this directory are libraries needed by TeensyBat V1_2 (20210522)
 
 To use this unzip both usdfs.zip and timealtlib.zip in seperate directories. 
-you can place all the other *.cpp and *.h files together.
-<code>
+You can place all the other *.cpp and *.h files together(eg bat_libs)
+
 ── bat_libs
 │   ├── bateffect_granular.cpp
 │   ├── bateffect_granular.h
@@ -44,4 +44,4 @@ you can place all the other *.cpp and *.h files together.
             ├── sd_sdhc.h
             ├── sd_spi.c
             └── sd_spi.h
-</code>
+
