@@ -20,8 +20,6 @@ You can place all the other .cpp and .h files together in another directory (eg 
 │   ├── TimeAlt.cpp
 │   ├── TimeAlt.h
 │   └── TimeAltLib.h
-├── TimeAlt.zip
-├── tree.txt
 └── uSDFS
     └── src
         ├── 00history.txt
