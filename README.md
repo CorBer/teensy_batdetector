@@ -1,4 +1,4 @@
-# Teensy_Batdetector  (update 2021 05 19)
+# Teensy_Batdetector  (update 2021 05 22)
 
 <b>Teensy Batdetector forum</b>
 https://forum.pjrc.com/threads/38988-Bat-detector
@@ -18,9 +18,9 @@ https://github.com/DD4WH/Teensy-Bat-Detector
 
 <br>
 
-# UPCOMING (CURRENTLY NOT ACTIVE)
-<b> v1.2 release 202105xx </b>
-Repository available since xx may 2021 <br>
+# NEW RELEASE 
+<b> v1.2 release 20210522 </b>
+Repository available at: <br>
 https://github.com/CorBer/teensy_batdetector/tree/master/version1_2
 <br>
 <br>
