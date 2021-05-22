@@ -1,4 +1,5 @@
-This directory contains pre_compiled_hex versions to be used on Teensy3.6 
+This directory contains pre_compiled_hex versions to be used on Teensy3.6 <br>
+<br>
 **firmwareV1_2_20210522_080508_default.zip**<br>
 this is the default release. Debug is OFF and PWM is ON. Also if you have not altered the TFT to use PWM to control the backlight you can still use this version.
 
