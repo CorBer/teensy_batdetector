@@ -23,18 +23,6 @@ You can place all the other .cpp and .h files together in another directory (eg 
 ├── TimeAlt.zip
 ├── tree.txt
 └── uSDFS
-    ├── examples
-    │   ├── logger_RawWrite
-    │   │   └── logger_RawWrite.ino
-    │   ├── logger_RawWrite_FS
-    │   │   └── logger_RawWrite_FS.ino
-    │   ├── test_diskio
-    │   │   └── test_diskio.ino
-    │   └── uSDFS_test
-    │       └── uSDFS_test.ino
-    ├── library.json
-    ├── library.properties
-    ├── README.md
     └── src
         ├── 00history.txt
         ├── 00readme.txt
