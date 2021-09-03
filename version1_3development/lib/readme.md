@@ -1,4 +1,5 @@
-local libraries for the TeensyBat V1_3 development release<br>
+<b>local libraries for the TeensyBat V1_3 development release</b><br>
+<br>
 // TimeAlt : Library for timekeeping functions<br>
 // SparkFun_u-blox_GNSS : Library to use UBLOX communication on GPS modules<br>
 // SDConfig : Library to store variable settings, can be restored at restarts<br>
