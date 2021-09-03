@@ -19,6 +19,13 @@ https://github.com/DD4WH/Teensy-Bat-Detector
 <br>
 
 # LATEST RELEASE 
+
+<b><h2> v1.3 development release 202109XX</h2> </b>
+Complete Repository (HEX/src/lib) available at: <br>
+https://github.com/CorBer/teensy_batdetector/tree/master/version1_3
+<br>
+<br>
+
 <b><h2> v1.2 release 20210522</h2> </b>
 Complete Repository (HEX/src/lib) available at: <br>
 https://github.com/CorBer/teensy_batdetector/tree/master/version1_2
