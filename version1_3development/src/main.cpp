@@ -1,6 +1,6 @@
 
 /**********************************************************************
- * TEENSYBAT DETECTOR (build/tested on TEENSY 3.6/4.1) VERSION 1.3 202108XX
+ * TEENSYBAT DETECTOR (build/tested on TEENSY 3.6/4.1) VERSION 1.3 20210909
  * Copyright (c) 2018/2019/2020/2021 Cor Berrevoets, registax@gmail.com
  *
  *   Hardware and PCB development and a lot of testing was done by Edwin Houwertjes
@@ -162,7 +162,6 @@
 #include "bat_ring_queue.h" //adapted ring_buffer library
 #endif
 #endif
-
 
 //local source blocks
 #include "bateffect_granular.h" //adapted effect_granular library
