@@ -105,13 +105,13 @@ void initGPS()
   if (not skip)
     {
     D_PRINTXY("GNSS: trying oldbaud ", oldbaud);
-    uint32_t start = millis();
+    //uint32_t start = millis();
     GPSuart.begin(oldbaud);
     if (myGNSS.begin(GPSuart) == true)
       {
       Sconnected = true;
       }
-    D_PRINTXY("test oldbaud (ms)", millis() - start);
+
     }
   D_PRINTXY("SKIP ", skip);
   int8_t br = 0;
@@ -159,11 +159,9 @@ void initGPS()
     myGNSS.warmReset();
 
     D_PRINT("Ublox Protocol version:");
-    byte versionHigh = myGNSS.getProtocolVersionHigh();
-    D_PRINT(versionHigh);
+    D_PRINT(myGNSS.getProtocolVersionHigh());
     D_PRINT(".");
-    byte versionLow = myGNSS.getProtocolVersionLow();
-    D_PRINTLN(versionLow);
+    D_PRINTLN(myGNSS.getProtocolVersionLow());
 
     if (myGNSS.powerSaveMode(false))
       {

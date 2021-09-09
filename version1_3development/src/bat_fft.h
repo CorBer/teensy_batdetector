@@ -131,8 +131,10 @@ void updateFFTanalysis()
 
   if (AGC_mode > 0) //AGC is active
     {
+
     if (peak > AGC_maxpeak) //too strong signal
       {
+
       if (AGC_unchanged > AGC_decay * 100) //too long alleady;
         {
         mic_gain = constrain(mic_gain - 1, AGC_minGAIN, AGC_maxGAIN);

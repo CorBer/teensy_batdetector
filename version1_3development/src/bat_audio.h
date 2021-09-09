@@ -206,13 +206,9 @@ int myInput = AUDIO_INPUT_MIC; //default input is MIC on SGTL5000 board
 #define SR_234K 11
 #define SR_281K 12
 #define SR_352K 13
-
-#ifdef EXPERIMENTAL
 #define SR_384K 14
 #define SR_MAX 14
-#else
-#define SR_MAX 13
-#endif
+
 
 
 

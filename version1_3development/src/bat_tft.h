@@ -29,7 +29,9 @@
 #include "bat_menu.h"
 #include "bat_fft.h"
 #include "bat_image.h"
+
 #include "bat_gps.h"
+
 
 #define ILI9341 //currently only created to be used with ILI9341
 #ifdef ILI9341
@@ -711,14 +713,14 @@ void showSettings()
           update_menu_value(SettingsSDCARDMenu[i].menu_id, SettingsSDCARDMenu[i].menu_txt, settings_page_nr, i);
           }
         } //update line in menu
-      }
+    }
   #endif
 
   #ifdef USE_GPS
     if (settings_page_nr == setpage_GPS)
       {
       update_menu_value(SettingsGPSMenu[i].menu_id, SettingsGPSMenu[i].menu_txt, settings_page_nr, i); //update line in menu
-      }
+  }
   #endif
     }
 
@@ -1013,7 +1015,7 @@ void StartupScreen()
   if (PSRAMsize > 0)
     {
     tft.printf("PSRAM :%dMB", PSRAMsize);
-    }
+  }
 #endif
 
   D_PRINTLN_F(D_BOLDGREEN, "STARTUPSCREEN END");
@@ -1459,7 +1461,7 @@ void showPushButtons()
         if ((detector_mode == detector_Auto_TE) and (detune_factor != 100))
           {
           snprintf(tstr, 12, "mode TE-HT");
-          }
+        }
       #endif
         if ((LeftButton_Mode == MODE_PLAY) and (play_SR != MAX_play_SR))
           {
@@ -1472,14 +1474,14 @@ void showPushButtons()
             snprintf(tstr, 12, " ");
             }
           }
-        }
+      }
 
       uint16_t sx = tft.strPixelLen(tstr);
 
       tft.setCursor(ILI9341_TFTWIDTH - sx, ILI9341_TFTHEIGHT - BOTTOM_UPPERPART + 1);
       tft.print(tstr);
-      }
     }
+  }
   }
 
 void showSettingsButtons()

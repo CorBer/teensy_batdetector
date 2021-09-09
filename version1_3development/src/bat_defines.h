@@ -93,51 +93,56 @@
 
 #include <TimeAltLib.h>
 
- //USE THIS FILE TO SETUP PERSONAL DEFINES
-#define DEBUG       //default OFF
+ /**************************USE THIS FILE TO SETUP YOUR PERSONAL DEFINES * ****************************/
 
-#define DEVELOPMENT //development version
+
+//#define DEBUG       //default OFF
+
+//#define DEVELOPMENT //these are settings mainly used for testing
 #ifdef DEVELOPMENT
-//these three settings allow indicators for recordings to SD to allow inspection of possible artefacts (timing etc)
+//the next three settings allow indicators for recordings to SD to allow inspection for possible artefacts (timing, skipped data etc)
 //#define AGC_MARKER
 //#define BUFFER_MARK //mark the end of each buffer
 //#define DUMMYDATA //allows data to be altered before writing to SD to check for continuity
+
+//#define DEEPSLEEP_LED 5 //allows a led with resistor on PIN 5 to blink during sleep at each wakeup very shortly
+//#define PEAKBIN_SERIAL //will allow sending a SERIAL message with the last recorded peakfrequency at the end of each incoming ultrasonic call 
+//#define TEMP_TIMECORRECT //allows to correct the DS18B20 temperature for a warming Teensy (gradual correction over 20 minutes after startup)
 #endif
 
-#define EXPERIMENTAL // will allow settings that could be less stable or not fully tested in certain setup/situations
-#ifdef EXPERIMENTAL
-#define PEAKBIN_SERIAL //will send a SERIAL message at the end each incoming ultrasonic call 
-#define TEMP_TIMECORRECT //allows to correct the DS18B20 temperature for a warming Teensy (gradual correction over 20 minutes after startup)
-//#define USE_TEFACTOR //optional heterodyne module after TimeExpansion to lower the frequency on the output(headphone) (RAM 140 bytes Flash 700 bytes)
-#endif
+// *************************** GLOBAL OPTIONAL FEATURES in V1_3 *************************** //
+#define USE_SDCONFIG //allow to read/write the current config to SD. Allows sharing and restoring of configurations.
+#define USE_FULLMODE_ON_REC //will use TFT and also allow TE mode during recording
 
-// GLOBAL NEW FEATURES in V1_3
-//#define USE_SDCONFIG //V1_3: allow to read/write the current config to SD. Allows transport and restoring of configuration for several machines.
-#define USE_FULLMODE_ON_REC //V1_3: will use active TFT and allow TE mode during recording
-#define UTC_OFFSET 1; // hours used to show local time when using GPS (offset from GMT/UTC)
-
-#define DEEPSLEEP //allow the system to cycling between deepsleep(very low power) and wakeup when using AUTORECORD during the day to save batterypower
+#define DEEPSLEEP //allow the system to cycle between deepsleep(very low power) and wakeup when using AUTORECORD during the day to save batterypower
 #ifdef DEEPSLEEP
-#define DEEPSLEEP_TIMER 10 //seconds wakeup delay. For a USBPACK it is necessary to this short to prevent the USBpowerack switching OFF
-// #define DEEPSLEEP_LED 5 //allows a led on PIN 5 to blink during sleep at each wakeup shortly
+#define DEEPSLEEP_TIMER 5 //seconds wakeup delay. For a USBPACK it is necessary to keep this short to prevent the USBpowerack switching OFF
 #endif
 
-//HARDWARE SPECIFIC options for T3.6
+//older optional features
+//#define USE_TEFACTOR //optional heterodyne module after TimeExpansion to lower the frequency on the output(headphone) 
+
+//***************************HARDWARE SPECIFIC options for T3.6 *********************************//
 #if defined(__MK66FX1M0__) //teensy 3.6
+#define MAX_REPLAY_SR 312000 //maximum samplerate to use during direct replay
 #define USE_PWMTFT 17      //use PWM controlled backlight (pin 17) (8bytes RAM 1kb Flash)
+
 //#define USE_GPS // optional GPS on SERIALPINS 0,1
 //#define USE_DS18B20 32 //optional DS18B20 temperature sensor on PIN32
-#define MAX_REPLAY_SR 312000 //maximum samplerate to use during direct replay
-#define VIN_ON //measure VIN only on T36
-#define VIN_LOW 3000
+
+#ifdef DEEPSLEEP //additional DEEPSLEEP FEATURES FOR T36
+#define VIN_ON //measure VIN only on T36 during active time in deepsleep
+#define VIN_LOW 3000 // only on T36, will put the system into sleepmode when the voltage is low
+#endif
 #endif
 
-//HARDWARE SPECIFIC options for T4.1
+//****************************HARDWARE SPECIFIC options for T4.1 *********************************//
 #if defined(__IMXRT1062__) //teensy 4.1
+#define MAX_REPLAY_SR 384000 //maximum samplerate to use during direct replay
 #define USE_PWMTFT 14      //use PWM controlled backlight (pin 14)
+
 //#define USE_GPS  // optional GPS on SERIALPINS 0,1  
 //#define USE_DS18B20 32 //optional DS18B20 temperature sensor on PIN32
-#define MAX_REPLAY_SR 384000 //maximum samplerate to use during direct replay
 
 #define USE_PSRAM //if active PSRAM will be used for prebuffer/recordingbuffer
 #ifdef USE_PSRAM
@@ -146,12 +151,10 @@ uint8_t PSRAMsize = external_psram_size; //always test PSRAM at startup
 #endif
 
 #define SCROLL_HORIZONTAL  //scroll waterfall horizontal
-
 #endif
 
 
-
-
+#define UTC_OFFSET 1; // hours used to show local time when using GPS (offset from GMT/UTC)
 
 #endif
 
