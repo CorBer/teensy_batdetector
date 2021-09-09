@@ -3,7 +3,7 @@
 
 All provided sourcecode will be setup to be used by default in platformIO. The sourcecode should compile in any Arduino IDE environment but will need carefull setup of libaries. In PlatformIO all local libraries are in the "lib" subdirectory of the projectfile.  
 <br>
-HEX: several prebuild HEX files for both Teensy 3.6 and Teensy 4.1<br>
-lib/src: source and libraries for PlatformIO (incl platformio.ini)<br>
-ZIP: zip file of all source/libraries for PlatformIO<br>
+<b>HEX</b>: several prebuild HEX files for both Teensy 3.6 and Teensy 4.1<br>
+<b>lib/src</b>: source and libraries for PlatformIO (incl platformio.ini)<br>
+<b>ZIP</b>: zip file of all source/libraries for PlatformIO<br>
 
