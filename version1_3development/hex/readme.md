@@ -11,6 +11,6 @@ HEX 2: BASE with DEBUG enabled<br>
 HEX 3: DEEPSLEEP and PWM enabled<br>
 HEX 4: DEEPSLEEP, PWM and PSRAM enabled<br>
 
-Edwin also has made a few HEX files available on
-https://www.teensybat.com/software
-These are precompiled with for instance the TEMPERATURE and/or GPS sensor activated
+Edwin also has HEX files available for V1.3: <br>
+https://www.teensybat.com/software<br>
+These are precompiled with for instance the TEMPERATURE and/or GPS sensor activated<br>
