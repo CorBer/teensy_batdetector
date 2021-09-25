@@ -8,5 +8,5 @@ All provided sourcecode can be used directly in platformIO. The sourcecode shoul
 <b>lib/src</b>: source and libraries for PlatformIO (incl platformio.ini)<br>
 <b>ZIP</b>: zip file of all source/libraries for PlatformIO<br>
 
-<b>WARNING<b> If you want to use GPS make sure your module supports serial communication at 115200 baudrate and uses Ublox. We tested using the Beitian 180 and Beitian 220 GPS modules.
+<b>WARNING</b> :If you want to use GPS make sure your module supports serial communication at 115200 baudrate and uses Ublox. We tested using the Beitian 180 and Beitian 220 GPS modules.
 
