@@ -241,10 +241,7 @@ const SR_Descriptor SR[SR_MAX + 1] =
       {SR_234K, "234", 234000, 1, 3},
       {SR_281K, "281", 281000, 2, 5},
       {SR_352K, "352", 352800, 1, 2},
-#ifdef EXPERIMENTAL
       {SR_384K, "384", 383500, 6, 11}
-#endif
-
 
   };
 
