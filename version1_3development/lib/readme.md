@@ -1,4 +1,4 @@
-These are the current set of libaries used for TeensyBat V1-3<hr>
+These are the current set of libaries used for TeensyBat V1-3
 TimeAlt : general timekeeping library
 Sparkfun_u-blox-GNSS: library for Ublox communication with GPS devices
 SDConfig : library to store variable settings in a file. Allows restoration of values from SDcard
