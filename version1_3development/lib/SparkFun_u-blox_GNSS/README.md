@@ -1,4 +1,6 @@
-# SparkFun u-blox Arduino GNSS Library
+# THIS IS A COPY OF THE SparkFun u-blox Arduino GNSS Library
+
+# ON 4th march 2022 part of the library was changed due to a false leap-year calculation
 
 <table class="table table-hover table-striped table-bordered">
   <tr align="center">
