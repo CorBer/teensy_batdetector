@@ -16,7 +16,7 @@ https://github.com/DD4WH/Teensy-Bat-Detector
 <br>
 
 # BUG in SPARKFUN GPS library
-<b> Beginning march 2022 a bug was found in the GPS readout, it seems the sparkfun library had a bug that reported 2022 as a leapyear. The library for teensybat has been updated, this is a temporary FIX !!!
+<b> Beginning march 2022 a bug was found in the GPS readout, it seems the sparkfun library had a bug that reported 2022 as a leapyear. The library for teensybat has been updated and the bat_gps.h file is updated.
 
 # LATEST RELEASE 
 <b><h2> v1.3 development release 20210909</h2> </b>
