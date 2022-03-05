@@ -77,6 +77,8 @@ void syncGPStime(time_t GPS_time)
     }
 
   time_t setT = GPStime + gps_utcoff * 3600 + dstactive * 3600;
+
+
   Teensy3Clock.set(setT);
   setTime(setT);
   syncGPS_time = true;
@@ -228,17 +230,30 @@ boolean readGPS()
       D_PRINT(" ");
       gps_SIV = myGNSS.packetUBXNAVPVT->data.numSV;
 
-      GPStime = ((((((((uint32_t)myGNSS.packetUBXNAVPVT->data.year - 1970) * 365) + ((((uint32_t)myGNSS.packetUBXNAVPVT->data.year - 1970) + 3) / 4)) +
-        DAYS_SINCE_MONTH[((uint32_t)myGNSS.packetUBXNAVPVT->data.year - 1970) & 3][(uint32_t)myGNSS.packetUBXNAVPVT->data.month] +
-        ((uint32_t)myGNSS.packetUBXNAVPVT->data.day - 1)) * 24
-        + (uint32_t)myGNSS.packetUBXNAVPVT->data.hour) * 60
-        + (uint32_t)myGNSS.packetUBXNAVPVT->data.min) * 60
-        + (uint32_t)myGNSS.packetUBXNAVPVT->data.sec);
+      GPStime=  SFE_UBLOX_DAYS_FROM_1970_TO_2020; // Jan 1st 2020 as days from Jan 1st 1970
+      GPStime += (uint32_t)SFE_UBLOX_DAYS_SINCE_2020[myGNSS.packetUBXNAVPVT->data.year - 2020]; // Add on the number of days since 2020
+      GPStime += (uint32_t)SFE_UBLOX_DAYS_SINCE_MONTH[myGNSS.packetUBXNAVPVT->data.year % 4 == 0 ? 0 : 1][myGNSS.packetUBXNAVPVT->data.month - 1];
+       
+      GPStime += (uint32_t)myGNSS.packetUBXNAVPVT->data.day - 1; // Add on the number of days since the 1st of the month
+      GPStime *= 24; // Convert to hours
+      GPStime += (uint32_t)myGNSS.packetUBXNAVPVT->data.hour; // Add on the hour
+      GPStime *= 60; // Convert to minutes
+      GPStime += (uint32_t)myGNSS.packetUBXNAVPVT->data.min; // Add on the minute
+      GPStime *= 60; // Convert to seconds
+      GPStime += (uint32_t)myGNSS.packetUBXNAVPVT->data.sec; // Add on the second 
 
+          // GPStime = ((((((((uint32_t)myGNSS.packetUBXNAVPVT->data.year - 1970) * 365) + ((((uint32_t)myGNSS.packetUBXNAVPVT->data.year - 1970) + 3) / 4)) +
+      //   DAYS_SINCE_MONTH[((uint32_t)myGNSS.packetUBXNAVPVT->data.year - 1970) & 3][(uint32_t)myGNSS.packetUBXNAVPVT->data.month] +
+      //   ((uint32_t)myGNSS.packetUBXNAVPVT->data.day - 1)) * 24
+      //   + (uint32_t)myGNSS.packetUBXNAVPVT->data.hour) * 60
+      //   + (uint32_t)myGNSS.packetUBXNAVPVT->data.min) * 60
+      //   + (uint32_t)myGNSS.packetUBXNAVPVT->data.sec);
+      
+     
       snprintf(gps_time, 20, "%04d%02d%02d %02d:%02d:%02d", year(GPStime), month(GPStime), day(GPStime), hour(GPStime), minute(GPStime), second(GPStime));
 
       GPSfix_time = GPStime + gps_utcoff * 3600 + dstactive * 3600; //this is needed to keep track of the time since the last fix
-
+      
       if (syncGPS_time == false) //only do this once !
         {
         syncGPStime(GPStime);
