@@ -6,12 +6,14 @@ These files are based on the V1.31 update of Teensybat
 HEX 1: BASE with no special features (NO PWM)<br>
 HEX 2: BASE with DEBUG enabled<br>
 HEX 3: DEEPSLEEP and PWM enabled<br>
+HEX 4: GPS, TEMPERATURE, DEEPSLEEP and PWM enabled <br> 
 <br>
 <b> Teensy 4.1</b><br>
 HEX 1: BASE with no special features (NO PWM)<br>
 HEX 2: BASE with DEBUG enabled<br>
 HEX 3: DEEPSLEEP and PWM enabled<br>
 HEX 4: DEEPSLEEP, PWM and PSRAM enabled<br>
+HEX 5: GPS, TEMPERATURE, PSRAM, DEEPSLEEP and PWM enabled <br>
 
 Edwin also has HEX files available<br>
 https://www.teensybat.com/software<br>
