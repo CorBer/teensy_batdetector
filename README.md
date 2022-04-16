@@ -15,12 +15,12 @@ kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 https://github.com/DD4WH/Teensy-Bat-Detector 
 <br>
 # update pending after a bug-report (2022 04 16)
-<b> About a week ago we got a bug-report that pointed towards an issue for both the T36 and the T41 versions
+<i> About a week ago we got a bug-report that pointed towards an issue for both the T36 and the T41 versions
   of the teensybat using AutoRecord. When stopping the autorecord sequence manually with the recording active this could lead to a wav-file with a wrong header. Also the sample-rate after stopping autorecord was not as the user had set it. Currently the user that reported the bug is testing a possible solution. 
-
+</i>
 
 # BUG in SPARKFUN GPS library
-<b> Beginning march 2022 a bug was found in the GPS readout, it seems the sparkfun library had a bug that reported 2022 as a leapyear. The library for teensybat has been updated and the bat_gps.h file is updated.
+Beginning march 2022 a bug was found in the GPS readout, it seems the sparkfun library had a bug that reported 2022 as a leapyear. The library for teensybat has been updated and the bat_gps.h file is updated.
 
 # LATEST RELEASE 
 <b><h2> v1.3 development release 20210909</h2> </b>
