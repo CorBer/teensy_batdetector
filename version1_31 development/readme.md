@@ -5,7 +5,8 @@ All provided sourcecode can be used directly in platformIO. The sourcecode shoul
 <br>
 <b>HEX</b>: several prebuild HEX files for both Teensy 3.6 and Teensy 4.1<br>
 
-<b>lib/src</b>: source and libraries for PlatformIO (incl platformio.ini)<br>
-<b>ZIP</b>: zip file of all source/libraries for PlatformIO<br>
+<b>src</b>: updated source files for PlatformIO (incl platformio.ini)<br>
+library files are available from the V1_3development section
+
 
 <b>WARNING</b> :If you want to use GPS make sure your module supports serial communication at 115200 baudrate and uses Ublox. We tested using the Beitian 180 and Beitian 220 GPS modules.<br>
