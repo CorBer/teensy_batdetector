@@ -25,7 +25,7 @@ Beginning march 2022 a bug was found in the GPS readout, it seems the sparkfun l
 # LATEST RELEASE 
 <b><h2> v1.31 development release update 20220416</h2> </b>
 Complete Repository (HEX src/lib for platformIO) available at: <br>
-https://github.com/CorBer/teensy_batdetector/tree/master/version1_31 development
+"https://github.com/CorBer/teensy_batdetector/tree/master/version1_31 development"
 <br>
 <br>
 
