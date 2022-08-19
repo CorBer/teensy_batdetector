@@ -36,7 +36,6 @@
 #include "bat_debug.h"
 
 
-
 char configFile[] = "TB_V13.cfg"; // filename to be used for the storage. TB_V13-> Teensybat V1_3
 
 //***************************************** read a stored configuration from the SD

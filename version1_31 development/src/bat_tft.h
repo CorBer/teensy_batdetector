@@ -1011,9 +1011,18 @@ void StartupScreen()
   tft.print("-");
   tft.print(FDATED); //show compiled date/time
   tft.print(" ");
-
   tft.println(String(__TIME__));
-  tft.setCursor(0, 215);
+  OS_compiler="User";
+  #ifdef COMPILEROS
+   OS_compiler=STR(COMPILEROS);
+   #pragma message(STR(COMPILEROS))
+  #endif
+
+  tft.print(OS_compiler); //show compilerversion
+  tft.println(" compiled");
+  D_PRINTXY("Compiled by:",OS_compiler);
+  
+  tft.setCursor(0, 235);
 
   tft.printf("TeensyDuino: 1.%3d\n", TEENSYDUINO); //teensyduino version
 #ifdef USE_PSRAM

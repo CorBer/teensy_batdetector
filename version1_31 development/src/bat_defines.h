@@ -65,13 +65,13 @@
  [P]=[A]=r=[T]   * GPS TX -> RX0 *                 Analog GN D      [T]═══[A]=[P]
                                1 *              .  3.3V - MEMS MIC  [T]   [A]=[P]
                                2 .                 23 AUDIO -MCLK   [T]=r=[A]=[P]
-                  I2C reserved 3 *              .  22 ADC-A8
-                  I2C reserved 4 *                 21 AUDIO BCLK    [T]=r=[A]=[P]
+              T36 I2C reserved 3 *              .  22 ADC-A8
+              T36 I2C reserved 4 *                 21 AUDIO BCLK    [T]=r=[A]=[P]
                                5 .                 20 AUDIO LRCLK   [T]=r=[A]=[P]
                    AUDIO MEMCS 6 *                 19 AUDIO - SCL   [T]=r=[A]=[P]
  [P]=[A]=r=[T]     AUDIO DIN   7                   18 AUDIO - SDA   [T]=r=[A]=[P]
- [P]=[A]=r=[T]     AUDIO DOUT  8                .  17 ADC-A3
-                               9 .              .  16 ADC-A2
+ [P]=[A]=r=[T]     AUDIO DOUT  8                *  17 T41 I2C reserved
+                               9 .              *  16 T41 I2C reserved
                    AUDIO SDCS 10 *              *  15 AUDIO -VOL
                    AUDIO MOSI 11 *                 14 TFT-PWM       [T]═══[A]=[P]
                    AUDIO MISO 12 *              *  13 AUDIO -SCLK
@@ -93,15 +93,16 @@
 
 #include <TimeAltLib.h>
 
- /**************************USE THIS FILE TO SETUP YOUR PERSONAL DEFINES * ****************************/
+#define ST(A) #A
+#define STR(A) ST(A)
 
+ /**************************USE THIS FILE TO SETUP YOUR PERSONAL DEFINES * ****************************/
 
 #define DEBUG       //default OFF
 
 #ifdef DEBUG
 #pragma message ("DEBUGGER IS ON")
 #endif
-
 
 //#define DEVELOPMENT //these are settings mainly used for testing
 #ifdef DEVELOPMENT
@@ -120,6 +121,7 @@
 #define USE_FULLMODE_ON_REC //will use TFT and also allow TE mode during recording
 
 #define DEEPSLEEP //allow the system to cycle between deepsleep(very low power) and wakeup when using AUTORECORD during the day to save batterypower
+
 #ifdef DEEPSLEEP
 #define DEEPSLEEP_TIMER 5 //seconds wakeup delay. For a USBPACK it is necessary to keep this short to prevent the USBpowerack switching OFF
 #endif
@@ -148,18 +150,18 @@
 #define MAX_REPLAY_SR 384000 //maximum samplerate to use during direct replay
 #define USE_PWMTFT 14      //use PWM controlled backlight (pin 14)
 
-//#define USE_GPS  // optional GPS on SERIALPINS 0,1  
-//#define USE_DS18B20 32 //optional DS18B20 temperature sensor on PIN32
+#define USE_GPS  // optional GPS on SERIALPINS 0,1  
+#define USE_DS18B20 32 //optional DS18B20 temperature sensor on PIN32
 
-//#define USE_PSRAM //if active PSRAM will be used for prebuffer/recordingbuffer
+#define USE_PSRAM //if active PSRAM will be used for prebuffer/recordingbuffer
 #ifdef USE_PSRAM
 extern "C" uint8_t external_psram_size;
 uint8_t PSRAMsize = external_psram_size; //always test PSRAM at startup
 #endif
 
 #define SCROLL_HORIZONTAL  //scroll waterfall horizontal
-#define VIN_ON // needs a resistor dividor circuit on pin A8 (22) to bring VIN voltage in the 0..3.3v range !! 
-#define VIN_LOW 3000
+//#define VIN_ON // needs a resistor dividor circuit on pin A8 (22) to bring VIN voltage in the 0..3.3v range !! 
+//#define VIN_LOW 3000
 #endif
 
 

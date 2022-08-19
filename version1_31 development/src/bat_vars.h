@@ -24,8 +24,11 @@
 #ifndef _BAT_VARS_H
 #define _BAT_VARS_H
 
- /* SETUP NVRAM FOR DEEPSLEEP */
 String versionStr = batversion;
+String OS_compiler = "Unknown";
+
+ /* SETUP NVRAM FOR DEEPSLEEP */
+
 #if defined(__MK66FX1M0__)
 uint32_t* NVRAM_DATA((uint32_t*)0x4003E000);
 #define NVRAM_words 7

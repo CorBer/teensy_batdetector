@@ -1,4 +1,53 @@
 
+/*** TODO
+ * // REQUEST FOR GPS coordinates displayed in HH MM SS.SS (FORUM)
+   
+ *  WILLEM: 2022-04-22
+ *  ik heb nog een ander eigenaardigheid ontdekt in de teensy. 
+ * Als ik in het default menu samplerate play op direct instel en safe en ik daarna  
+ * een opname terug luister staat de samplerate op 1/5. 
+ * Als ik daarna in het defaultmenu kijk dan zie ik daar 1/21 staan. 
+ * Dit zit al langer in de software en geld ook voor de T3.6. Misschien nog een punt om naar te kijken en mee te nemen in de volgende update. 
+ * 
+ * ADRIAN 2022-04 24 mail
+ * I'm using DEEPSLEEP successfully, but I find it hard to wake the Teensy
+ *  when it is sleeping (in order to tweak a few settings for example). I
+ * have to perform a 'factory' reset to get it back to life.  Then I notice
+ * that I cannot follow this with a restoring settings from SD card. Serial
+ * output indicates that the settings have been read...but nothing actually
+ * changes (see annotated serial_out.txt attached). Nothing that I try will
+ * restore the saved settings from SD card.
+
+ * I then have to manually make the changes and re-save.  Then I am able to
+ * successfully restore any settings from SD card - so it does work, but
+ * not directly after performing a factory reset.
+ * 
+ * Willem
+	
+WILLEM 220507,
+Nu het wat langer licht blijft geruik ik de laatste tijd de deepsleep mode. Dit werkt goed, echter als ik de deepsleep stop 
+door de lnk btn in gedrukt te houden start de teensy op met reset to default. 
+Echter daarbij is de config file op de sd kaart ook overschreven met de default waarden. 
+Nu moet ik alles weer handmatig instellen, dat is lastig. Het opstarten met default van sd gaat niet.
+
+Ik heb het volgend gedaan:
+teensy ingesteld met mijn waarden en saved, teensy uit en sd kaart uit de teensy gehaald en gezien dat mijn waarden op de sd kaart staan. 
+teensy opgestart met lnk btn reset to default, teensy heeft nu de default waarden. teensy uit en de sd kaart geplaatst en op gestart met r-btn, 
+default van sd, dit staat ook op het scherm maar na opstarten staan is er niks veranderd en staan nog steeds de default waarden in de teensy. 
+Het opstarten met default van sd gaat dus niet, dit is ook bij mijn t3.6 het geval. ik gebruik in beide teensy's de versie1.31.
+Zou je hier eens naar willen kijken. 
+ * 
+ 
+Edwin 220606 In deepsleep is weer wat bijzonders ontdekt.
+
+Als je dat wilt instellen voor de volgende dag, dus van bijvoorbeeld  autorecord van 0.30 tot 5:30, dan gaat het toestel direct aan in autorecord zodra je dat activeert.
+Een ontwaaktijd instellen op 23:59 gaat goed, maar zodra de ontwaaktijd 0:00 of later is gaat autorecord dus direct aan.
+
+Edwin 220712 DST off wordt niet opgeslagen
+
+*/
+ 
+
 /**********************************************************************
  * TEENSYBAT DETECTOR (build/tested on TEENSY 3.6/4.1) VERSION 1.3 202108XX
  * Copyright (c) 2018/2019/2020/2021 Cor Berrevoets, registax@gmail.com
@@ -114,7 +163,6 @@
    // post V1_3
    // added VIN measurement for Teensy 4.1 on pin 22 (A8), needs resistor-dividor to bring test-voltage in 0..3v3 range !!
    // change in Sparkfun library due to false leapyear calculation
-   // REQUEST FOR GPS coordinates displayed in HH MM SS.SS (FORUM)
    
 
    // V1_3 CHANGES
@@ -144,6 +192,7 @@
 #define batversion " v1.3(post)"
 #define versiontrack "09111500"
 #define versionno 1030  
+
 // used in EEProm storage <1000 is pre-release            
 //  1010 is a the 2nd development version update          
 //  1020 is a new release. Final testing started 20210515 
@@ -426,6 +475,7 @@ void startRecording()
 #ifdef USE_PSRAM
   boolean AREC_SRswitch = false;
 #endif
+
   if (AUTO_REC)
     {
      D_PRINTLN_F("AUTOREC", AUTO_REC);
@@ -2209,13 +2259,15 @@ void setup()
     Serial.println(NVRAM_DATA[ii]);
     }
 #endif
-
+  
   D_PRINTLN_F(D_BOLDGREEN, "COMPILER INFORMATION");
+
   D_PRINTXY("ARDUINO ", ARDUINO);
   D_PRINTXY("C++ ", __cplusplus);
   D_PRINTXY("CLIBCXX ", __GLIBCXX__);
   D_PRINTXY("Version ", __VERSION__);
   D_PRINTXY("F_CPU ", F_CPU);
+  
 #ifdef VIN_ON
   D_PRINTXY("VIN", VIN_ADC());
 
@@ -2692,8 +2744,9 @@ void loop()
       NVRAM_DATA[0] = getRTC_TSR(); //set current time in seconds NVRAM0
       NVRAM_DATA[1] = AREC_DEEPSLEEP_SLEEP; //also keep track of the wakeup and sleep time
       NVRAM_DATA[2] = AREC_DEEPSLEEP_WAKEUP;
-
+#ifdef USE_PWMTFT
       powerOff_beforeSleep();
+#endif      
       setWakeupCallandSleep(DEEPSLEEP_TIMER);
       }
 
@@ -2840,12 +2893,12 @@ void loop()
               if ((display_mode != settings_page) and (GPSbaudOK))
                 {
                 D_PRINT("readGPS(ms)");
-                uint32_t start = millis();
+                //uint32_t start = millis();
 
                 readGPS(); //just read and update and powerdown
                 showTime();
 
-                D_PRINTXY(millis() - start, " DONE");
+                //D_PRINTXY(millis() - start, " DONE");
                 }
             #endif
               }
@@ -2974,8 +3027,9 @@ void loop()
 
             NVRAM_DATA[1] = AREC_DEEPSLEEP_SLEEP; //also keep track of the wakeup and sleep time
             NVRAM_DATA[2] = AREC_DEEPSLEEP_WAKEUP;
-
+#ifdef USE_PWMTFT
             powerOff_beforeSleep();
+#endif            
 
             setWakeupCallandSleep(DEEPSLEEP_TIMER);
           #else
