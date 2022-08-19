@@ -183,7 +183,7 @@
 
 #include "bat_gps.h"
 
-#include "bat_lipo.h"
+//#include "bat_lipo.h"
 
 #include "bat_sd.h" //routines to read/write SD
 #ifdef USE_SDCONFIG
