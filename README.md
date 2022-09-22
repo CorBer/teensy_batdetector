@@ -52,8 +52,6 @@ https://github.com/CorBer/teensy_batdetector/tree/master/version1_0
 
 Repository is available with all recent code and libraries. 
 
-Older versions of this project can be found at https://github.com/CorBer/OLD-teensy_batdetector
-
 <i>This is a work in progress project, the code will keep changing. If you have a specific request or otherwise questions please share them on the forum. 
 
 For each version you will find a src-directory containing all current sourcecode, several specific libraries have been added to lib-directory for each version. 
