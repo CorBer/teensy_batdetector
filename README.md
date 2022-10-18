@@ -1,4 +1,4 @@
-# Teensy_Batdetector  (update 2022 04 16)
+# Teensy_Batdetector  (update 2022 10 18)
 
 <b>Teensy Batdetector forum</b>
 https://forum.pjrc.com/threads/38988-Bat-detector
@@ -13,6 +13,9 @@ kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 
 <b>Based on original-code from Frank (DD4WH)</b>
 https://github.com/DD4WH/Teensy-Bat-Detector 
+<br>
+# update pending (2022 10 18)
+<i> Based on some bug-reports and a few hardware-changes (batterymonitor) we will be releasing a new set of HEX-files and sourcecode for TeensyBat 1.4 beta 1
 <br>
 # update released after a bug-report (2022 04 16)
 <i> About a week ago we got a bug-report that pointed towards an issue for both the T36 and the T41 versions
