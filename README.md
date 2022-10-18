@@ -14,11 +14,11 @@ kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 <b>Based on original-code from Frank (DD4WH)</b>
 https://github.com/DD4WH/Teensy-Bat-Detector 
 <br>
-# update pending (2022 10 18)
+# update 1.4beta1 pending (2022 10 18)
 <i> Based on some bug-reports and a few hardware-changes (batterymonitor) we will be releasing a new set of HEX-files and sourcecode for TeensyBat 1.4 beta 1
 </i>  
 <br>
-# update released after a bug-report (2022 04 16)
+# update for 1.31 released after a bug-report (2022 04 16)
 <i> About a week ago we got a bug-report that pointed towards an issue for both the T36 and the T41 versions
   of the teensybat using AutoRecord. When stopping the autorecord sequence manually with the recording active this could lead to a wav-file with a wrong header. Also the sample-rate after stopping autorecord was not as the user had set it. We have uploaded source and HEX files for V1.31 
 </i>
