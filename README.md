@@ -24,6 +24,8 @@ https://github.com/DD4WH/Teensy-Bat-Detector
 - in autoRecording the PRE-Buffer was deactivated in V1_31 it seems, this is restored <br>
 - the GPS menu also shows coordinates in HH MM SS <br>
 <br>
+
+
 # update for 1.31 released after a bug-report (2022 04 16)
 <i> About a week ago we got a bug-report that pointed towards an issue for both the T36 and the T41 versions
   of the teensybat using AutoRecord. When stopping the autorecord sequence manually with the recording active this could lead to a wav-file with a wrong header. Also the sample-rate after stopping autorecord was not as the user had set it. We have uploaded source and HEX files for V1.31 
