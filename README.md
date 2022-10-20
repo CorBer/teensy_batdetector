@@ -15,16 +15,15 @@ kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 https://github.com/DD4WH/Teensy-Bat-Detector 
 <br>
 # update 1.4beta1 available (2022 10 20)
-<i> - by default all optional hardware (GPS, LIPO etc) is tested at startup and will be used if available. This reduces the need for separate HEX files for different configurations. Only T41 with/without PSRAM will stay two separate HEX files. <br>
-    - monitoring of LIPO batterylife based on a MAX17043 chip (latest PCB from Edwin) was added<br>
-    - saving and restoring the configuration from an SD has improved. This allows transfer of configuration between TeensyBat machines <br>
+- by default all optional hardware (GPS, LIPO etc) is tested at startup and will be used if available. This reduces the need for separate HEX files for different configurations. Only T41 with/without PSRAM will stay two separate HEX files. <br>
+- monitoring of LIPO batterylife based on a MAX17043 chip (latest PCB from Edwin) was added<br>
+- saving and restoring the configuration from an SD has improved. This allows transfer of configuration between TeensyBat machines <br>
        and also allows easy restoration of your settings between releases. There are also more settings stored in the configfiles.<br>
-    - deepsleep functionality had a limitation in V1_3, you could not set a wakeup of the device after 0h, now this is also possible<br>
-    - when playing a recording the switching between replay rates and Direct replay was not always reliable, now works as planned<br>
-    - Autorecording was not restoring all default settings after it was stopped by the user, this has been improved<br>
-    - in autoRecording the PRE-Buffer was deactivated in V1_31 it seems, this is restored <br>
-    - the GPS menu also shows coordinates in HH MM SS <br>
-</i>  
+- deepsleep functionality had a limitation in V1_3, you could not set a wakeup of the device after 0h, now this is also possible<br>
+- when playing a recording the switching between replay rates and Direct replay was not always reliable, now works as planned<br>
+- Autorecording was not restoring all default settings after it was stopped by the user, this has been improved<br>
+- in autoRecording the PRE-Buffer was deactivated in V1_31 it seems, this is restored <br>
+- the GPS menu also shows coordinates in HH MM SS <br>
 <br>
 # update for 1.31 released after a bug-report (2022 04 16)
 <i> About a week ago we got a bug-report that pointed towards an issue for both the T36 and the T41 versions
