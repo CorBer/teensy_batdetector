@@ -34,7 +34,7 @@ https://github.com/CorBer/teensy_batdetector/tree/master/version1_4
   of the teensybat using AutoRecord. When stopping the autorecord sequence manually with the recording active this could lead to a wav-file with a wrong header. Also the sample-rate after stopping autorecord was not as the user had set it. We have uploaded source and HEX files for V1.31 
 </i>
 
-# BUG in SPARKFUN GPS library
+<b> <h2> BUG in SPARKFUN GPS library </h2> </b>
 Beginning march 2022 a bug was found in the GPS readout, it seems the sparkfun library had a bug that reported 2022 as a leapyear. The library for teensybat has been updated and the bat_gps.h file is updated.
 
 
