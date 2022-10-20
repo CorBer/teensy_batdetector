@@ -14,6 +14,7 @@ kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 <b>Based on original-code from Frank (DD4WH)</b>
 https://github.com/DD4WH/Teensy-Bat-Detector 
 <br>
+# LATEST RELEASE 
 # update 1.4beta1 available (2022 10 20)
 https://github.com/CorBer/teensy_batdetector/tree/master/version1_4
 - by default all optional hardware (GPS, LIPO etc) is tested at startup and will be used if available. This reduces the need for separate HEX files for different configurations. Only T41 with/without PSRAM will stay two separate HEX files. <br>
@@ -25,8 +26,7 @@ https://github.com/CorBer/teensy_batdetector/tree/master/version1_4
 - in autoRecording the PRE-Buffer was deactivated in V1_31 it seems, this is restored <br>
 - the GPS menu also shows coordinates in HH MM SS <br>
 <br>
-
-
+# PREVIOUS RELEASES
 # update for 1.31 released after a bug-report (2022 04 16)
 <i> About a week ago we got a bug-report that pointed towards an issue for both the T36 and the T41 versions
   of the teensybat using AutoRecord. When stopping the autorecord sequence manually with the recording active this could lead to a wav-file with a wrong header. Also the sample-rate after stopping autorecord was not as the user had set it. We have uploaded source and HEX files for V1.31 
@@ -35,7 +35,7 @@ https://github.com/CorBer/teensy_batdetector/tree/master/version1_4
 # BUG in SPARKFUN GPS library
 Beginning march 2022 a bug was found in the GPS readout, it seems the sparkfun library had a bug that reported 2022 as a leapyear. The library for teensybat has been updated and the bat_gps.h file is updated.
 
-# LATEST RELEASE 
+
 <b><h2> v1.31 development release update 20220416</h2> </b>
 Complete Repository (HEX src/lib for platformIO) available at: <br>
 "https://github.com/CorBer/teensy_batdetector/tree/master/version1_31%20development"
@@ -53,8 +53,7 @@ Complete Repository (HEX/src/lib) available at: <br>
 https://github.com/CorBer/teensy_batdetector/tree/master/version1_2
 <br>
 <br>
-# AVAILABLE SOURCECODE / HEXFILES
-
+# OLDER SOURCECODE / HEXFILES
 <b> v1.1development version 20210409 </b>
 Repository available since 9 april 2021 <br>
 https://github.com/CorBer/teensy_batdetector/tree/master/version1_1develop
