@@ -23,6 +23,7 @@ https://github.com/CorBer/teensy_batdetector/tree/master/version1_4
 - Autorecording was not restoring all default settings after it was stopped by the user, this has been improved<br>
 - in autoRecording the PRE-Buffer was deactivated in V1_31 it seems, this is restored <br>
 - the GPS menu also shows coordinates in HH MM SS <br>
+
 <br>
 
 # PREVIOUS RELEASES
