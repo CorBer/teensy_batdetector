@@ -14,9 +14,9 @@ https://github.com/DD4WH/Teensy-Bat-Detector
 <br>
 # LATEST RELEASE 
 # update 1.4beta1 available (2022 10 20)
-https://github.com/CorBer/teensy_batdetector/tree/master/version1_4
-or
-https://github.com/CorBer/teensy_batdetector/releases
+https://github.com/CorBer/teensy_batdetector/tree/master/version1_4<br>
+or<br>
+https://github.com/CorBer/teensy_batdetector/releases<br>
 - by default all optional hardware (GPS, LIPO etc) is tested at startup and will be used if available. This reduces the need for separate HEX files for different configurations. Only T41 with/without PSRAM will stay two separate HEX files. <br>
 - monitoring of LIPO batterylife based on a MAX17043 chip (latest PCB from Edwin) was added<br>
 - saving and restoring the configuration from an SD has improved. This allows transfer of configuration between TeensyBat machines and also allows easy restoration of your settings between releases. There are also more settings stored in the configfiles.<br>
