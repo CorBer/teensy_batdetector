@@ -8,6 +8,9 @@ code allows us to have all features available for TeensyBat. At startup the soft
 test which features are actively in use and will only use those. This allows for instance
 to add a GPS module later to your PCB without the need for recompiling.
 
+If you have problems, the DEBUG versions of the HEX files can be used to see possible issues
+on the serialport of the Teensy.
+
 <H1> <b>SOURCE CODE</b> </H1>
 The raw code is available in a single zip file. This contains all the necessary 
 code and libraries we used for compilation on PlatformIO under Visual Studio Code.
