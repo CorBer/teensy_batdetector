@@ -1,4 +1,4 @@
-# Teensy_Batdetector  (update 2022 10 20)
+# Teensy_Batdetector  (update 2022 11 04)
 
 <b>Teensy Batdetector forum</b>
 https://forum.pjrc.com/threads/38988-Bat-detector
@@ -13,6 +13,8 @@ kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 https://github.com/DD4WH/Teensy-Bat-Detector 
 <br>
 # LATEST RELEASE 
+# update 1.4beta2 for NO_PSRAM available (2022 11 04)
+We got a report from a user that was using a Teensy 4.1 without PSRAM, it seems the code/HEX we have created was not functional at all due to a serious flaw. This only affects T41 without PSRAM and is restored with a new HEX uploaded.
 # update 1.4beta1 available (2022 10 20)
 https://github.com/CorBer/teensy_batdetector/tree/master/version1_4<br>
 or<br>
