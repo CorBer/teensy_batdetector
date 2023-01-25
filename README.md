@@ -1,4 +1,5 @@
 # Teensy_Batdetector  (update 2023 01 25)
+release available from https://github.com/CorBer/teensy_batdetector/releases/tag/v1.5
 
 ## <b>GRANULAR STRETCH</b>
 In previous releases we used the acronym "TE" for one of the modes of the detector. A producer of commercial detectors has objected to us using that acronym as they have a patent on a live TE technique. Although We Are not using their technique We Are now renaming this mode to GS. This stands for Granular Stretch, which is the actual method We Are usign based on the standard granular-effect library in the Teensy Audio library. (see https://forum.pjrc.com/threads/53036-Batdetector-Time-expansion-(slow-down-replay)-using-granular-effect?highlight=granular+effect).
