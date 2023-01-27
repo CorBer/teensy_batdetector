@@ -19,7 +19,7 @@ If you have questions please share them at
 https://forum.pjrc.com/threads/38988-Bat-detector
 
 
-<b>Startup picture of a Daubenton's Bat </b>
+<b>Startup picture of a Daubenton's Bat </b><br>
 The startup picture of the detector was kindly provided by Paul van Hoof https://www.paulvanhoof.nl/
 
 <b>Based on original-code from Frank (DD4WH)</b>
