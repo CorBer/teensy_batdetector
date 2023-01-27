@@ -6,7 +6,7 @@ This Github repository contains the latest release (build 2023 01 25):<br>
 https://github.com/CorBer/teensy_batdetector/releases/tag/v1.5
 
 <b>Hardware:</b>
-Edwin has developed a great PCB (current version 0.8) that allows you to build a detector with minimal skills. <br>More details can be found at his website https://www.teensybat.com
+Edwin has developed a great PCB (current version 0.8) that allows you to build our detector with minimal skills. <br>More details can be found at his website https://www.teensybat.com
 
 
 ## <b>change to GRANULAR STRETCH</b>
