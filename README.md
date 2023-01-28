@@ -14,7 +14,7 @@ In previous releases we used the acronym "TE" for one of the modes of the detect
 
 All code and hex of previous releases are currently NOT available  as converting all of them to respect this demand would mean a lot of work. If anybody wants a particular version please request and we will create that as a HEX file with the new GS acronym.
 
-<b>Teensy Batdetector forum</b>
+<b>Questions/Requests for the Teensy based Batdetector</b>
 If you have questions please share them at 
 https://forum.pjrc.com/threads/38988-Bat-detector
 
