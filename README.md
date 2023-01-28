@@ -6,6 +6,7 @@ The TeensyBat detector is a close cooperation between Edwin Houwertjes (hardware
 <b>Software:</b>
 This Github repository contains the latest release (build 2023 01 28):<br>
 https://github.com/CorBer/teensy_batdetector/releases/tag/v1.5
+The original release on 2023 01 25 did not show the proper release-version.  
 
 <b>Hardware:</b>
 Edwin has developed a great PCB (current version 0.8) that allows you to build our detector with minimal skills. <br>More details can be found at his website https://www.teensybat.com
