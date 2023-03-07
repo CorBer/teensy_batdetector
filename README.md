@@ -1,7 +1,7 @@
 # Teensy_Batdetector  (update 2023 03 07)
 The TeensyBat detector is a close cooperation between Edwin Houwertjes (hardware) and Cor Berrevoets (software). Development started in 2018 and since then both software and hardware have gone through major changes. We aim at providing a low-cost build-yourself bat detector.
 
-<b>Development of v1.6</b>
+# <b>Development of v1.6</b>
 The next version is currently under development but in the final testing stages. A few important changes:
 - MediaTransferProtocol added: The detector now can be connected to a PC/Laptop and will show up as an MTP-device.
 this will allow copying of files from the detector to a PC without removing the SD-card
@@ -10,7 +10,7 @@ this will allow copying of files from the detector to a PC without removing the 
 - GPS improvements: The GPS module (if mounted) demands quite a bit of current during usage, in the new version you can switch the GPS on/off to get a position and still preserve battery
 - Battery-indicator: if a lipo battery-indicator is mounted this will provide better feedback of the battery-status.  
 
-<b>Software:</b>
+# <b>Current version 1.5 :</b>
 This Github repository contains the latest release (build 2023 01 28):<br>
 https://github.com/CorBer/teensy_batdetector/releases/tag/v1.5
 The original release on 2023 01 25 did not show the proper release-version.  
