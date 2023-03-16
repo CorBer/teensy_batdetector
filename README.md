@@ -1,17 +1,23 @@
-# Teensy_Batdetector  (update 2023 03 07)
+# Teensy_Batdetector  (update 2023 03 16)
 The TeensyBat detector is a close cooperation between Edwin Houwertjes (hardware) and Cor Berrevoets (software). Development started in 2018 and since then both software and hardware have gone through major changes. We aim at providing a low-cost build-yourself bat detector.
 
-# <b>Development of v1.6</b>
-The next version is currently under development but in the final testing stages. A few important changes:
-- MediaTransferProtocol added: The detector now can be connected to a PC/Laptop and will show up as an MTP-device.
-this will allow copying of files from the detector to a PC without removing the SD-card
-- Screen on during recording: the screen can now be left active (default is OFF) both during manual and automatic recording sessions. 
-- Deepsleep improvements: Deepsleep now will behave properly based in the start-end times of the recording period. Too keep battery-usage minimal the T41 version will switch to a lower clockspeed in the deepsleep mode (both during sleep and recording). Additional status-screen information is now avaiable when the screen is off during deepsleep, long-pressing a button will provide feedback of the status.
-- GPS improvements: The GPS module (if mounted) demands quite a bit of current during usage, in the new version you can switch the GPS on/off to get a position and still preserve battery
-- Battery-indicator: if a lipo battery-indicator is mounted this will provide better feedback of the battery-status.  
+# <b>Hardware:</b>
+Edwin has developed a great PCB (current version 0.8) that allows you to build our detector with minimal skills. <br>More details can be found at his website https://www.teensybat.com
 
-# <b>Current version 1.5 :</b>
-This Github repository contains the latest release (build 2023 01 28):<br>
+# <b>Current version v1.6 (released on 2023 03 16) </b>
+see https://github.com/CorBer/teensy_batdetector/releases/tag/v1.6<br>
+
+This version was developed in feb/mar 2023. 
+The most important changes:
+- MediaTransferProtocol added: The detector now can be connected to a PC/Laptop and will show up as an MTP-device.
+this will allow copying of files from the detector to a PC without removing the SD-card.
+- Screen on during recording: the screen can now be left active (default is OFF) both during manual and automatic recording sessions (this feature is supported fully on T41but experimental for T36)
+- Deepsleep improvements: Deepsleep now will behave properly based in the start-end times of the recording period. Too keep battery-usage minimal the T41 version will always switch to a lower clockspeed in the deepsleep mode (both during sleep and recording). To assist the user a status-screen information is now available when the screen is off during deepsleep, long-pressing the right-pushbutton will provide feedback of the status.
+- GPS improvements: The GPS module (if mounted) demands quite a bit of current during usage, in the new version you can switch the GPS on/off to simply get a position and still preserve battery. 
+- Battery-indicator: if a lipo battery-indicator is mounted this will provide better feedback of the battery-status.  This indicator also has an experimental estimator of the hours that are left in the battery.
+
+# <b>previous version 1.5 :</b>
+This Github repository contains the previous release (build 2023 01 28):<br>
 https://github.com/CorBer/teensy_batdetector/releases/tag/v1.5
 The original release on 2023 01 25 did not show the proper release-version.  
 
