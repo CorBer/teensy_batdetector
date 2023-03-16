@@ -24,7 +24,7 @@ The original release on 2023 01 25 did not show the proper release-version.
 <b>Hardware:</b>
 Edwin has developed a great PCB (current version 0.8) that allows you to build our detector with minimal skills. <br>More details can be found at his website https://www.teensybat.com
 
-![](images/Teensybat.png?raw=true)
+![](images/20230304T110214.BMP?raw=true)
 
 ## <b>change to GRANULAR STRETCH</b>
 In previous releases we used the acronym "TE" for one of the modes of the detector. A producer of commercial detectors has objected to us using that acronym as they have a patent on a live TE technique. Although We Are not using their technique We Are now renaming this mode to GS. This stands for Granular Stretch, which is the actual method We Are usign based on the standard granular-effect library in the Teensy Audio library. (see https://forum.pjrc.com/threads/53036-Batdetector-Time-expansion-(slow-down-replay)-using-granular-effect?highlight=granular+effect).
