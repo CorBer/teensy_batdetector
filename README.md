@@ -1,4 +1,4 @@
-# Teensy_Batdetector  (update 2023 03 16)
+# Teensy_Batdetector  (update 2023 03 17)
 The TeensyBat detector is a close cooperation between Edwin Houwertjes (hardware) and Cor Berrevoets (software). Development started in 2018 and since then both software and hardware have gone through major changes. We aim at providing a low-cost build-yourself bat detector.
 
 # <b>Hardware:</b>
@@ -6,7 +6,7 @@ Edwin has developed a great PCB (current version 0.8) that allows you to build o
 
 ![](images/20230304T110214.BMP?raw=true)
 
-# <b>Current version v1.6 (released on 2023 03 16) </b>
+# <b>Current version v1.6 (released on 2023 03 17) </b>
 see https://github.com/CorBer/teensy_batdetector/releases/tag/v1.6<br>
 
 This version was developed in feb/mar 2023. 
