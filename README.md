@@ -26,7 +26,7 @@ The original release on 2023 01 25 did not show the proper release-version.
 
 
 ## <b>change to GRANULAR STRETCH</b>
-In previous releases we used the acronym "TE" for one of the modes of the detector. A producer of commercial detectors has objected to us using that acronym as they have a patent on a live TimeExpansion technique. Although we are not using their technique we have renamedd our technique to GranularStretch(GS). The method we are using are enhancements of the standard granular-effect library from the Teensy Audio library. (see https://forum.pjrc.com/threads/53036-Batdetector-Time-expansion-(slow-down-replay)-using-granular-effect?highlight=granular+effect).
+In previous releases we used the acronym "TE" for one of the modes of the detector. A producer of commercial detectors has objected to us using that acronym as they have a patent on a live TimeExpansion technique. Although we are not using their technique we have renamed our technique to GranularStretch(GS). The method we are using are enhancements of the standard granular-effect library from the Teensy Audio library. (see https://forum.pjrc.com/threads/53036-Batdetector-Time-expansion-(slow-down-replay)-using-granular-effect?highlight=granular+effect).
 
 All code and hex of previous releases are therefore NOT available as converting all of them to respect this demand would mean a lot of work. If anybody wants a particular version please request and we will create that as a HEX file with the new GS acronym.
 
