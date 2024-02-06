@@ -4,7 +4,7 @@ The Teensy Batdetector is cooperation between Edwin Houwertjes (hardware) and Co
 # <b>Hardware:</b>
 <b>Edwin </b> has developed a great PCB (current version 0.8) that allows you to build our detector with minimal skills. More details can be found at his website https://www.teensybat.com
 
-# <b>Update pending version v1.7 (released on 2024 02 xx) </b>
+# <b>Update pending version v1.7 (release on 2024 02 xx) </b>
 see https://github.com/CorBer/teensy_batdetector/releases/tag/v1.7<br>
 ![](images/basic_functionsV1.7.png?raw=true)
 
