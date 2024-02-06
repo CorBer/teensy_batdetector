@@ -8,7 +8,7 @@ The Teensy Batdetector is cooperation between Edwin Houwertjes (hardware) and Co
 
 # <b>Update pending version v1.7 (released on 2024 02 xx) </b>
 see https://github.com/CorBer/teensy_batdetector/releases/tag/v1.7<br>
-![](images/basic_functionsV1_7.png?raw=true)
+![](images/basic_functionsV1.7.png?raw=true)
 
 # <b>Current version v1.6 (released on 2023 03 17, sourcecode added 2023 04 30) </b>
 see https://github.com/CorBer/teensy_batdetector/releases/tag/v1.6<br>
