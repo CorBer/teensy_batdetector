@@ -1,4 +1,4 @@
-# Teensy_Batdetector  (update 2023 03 17)
+# Teensy_Batdetector  (update pending 2024 02 06)
 The Teensy Batdetector is cooperation between Edwin Houwertjes (hardware) and Cor Berrevoets (software). Development started in 2018 and since then both software and hardware have gone through major changes. We aim at providing a low-cost build-yourself bat detector.
 
 # <b>Hardware:</b>
