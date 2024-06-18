@@ -1,9 +1,12 @@
-# Teensy_Batdetector  (update 2024 03 18)
+# Teensy_Batdetector  (update 2024 06 18)
 The Teensy Batdetector is cooperation between Edwin Houwertjes (hardware) and Cor Berrevoets (software). Development started in 2018 and since then both software and hardware have gone through major changes. We aim at providing a low-cost build-yourself bat detector.
 
 # <b>Hardware:</b>
 <b>Edwin </b> has developed a great PCB (current version 0.8) that allows you to build our detector with minimal skills. More details can be found at his website https://www.teensybat.com
 
+# <b>Warning: version v1.71 (release on 2024 06 18) </b>
+Version v1.71 seems to sometimes give issues when using the deepsleep function. Its unclear what causes this so no rapid solution to this currently is available.  
+The most likely solution for this is a full rebuild of the V1.6 code with the new functionality added again. 
 
 # <b>Update version v1.71 (release on 2024 03 18) </b>
 We have found an issue with the code released earlier. The newly introduced option to use the serialnumber as part of the filename whilst recording can give issues.
