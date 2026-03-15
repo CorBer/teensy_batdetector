@@ -1,3 +1,7 @@
+# This archive will be moved to CodeBerg 
+see https://codeberg.org/Corbee/teensy_batdetector
+
+
 # Teensy_Batdetector future (update 2026 01 22)
 Currently there are no plans to update the latest code (1.71)
 
